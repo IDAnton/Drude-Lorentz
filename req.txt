@@ -1,0 +1,6 @@
+pyqt6
+pyqt-tools
+matplotlib
+PySide6
+numpy
+qdarkstyle
