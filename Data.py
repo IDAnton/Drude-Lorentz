@@ -118,5 +118,5 @@ class Data:
     def phase(self):  # returns phase_12
         self.phase = np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
 
-    def A(self):  # optical density of the film with interference
+    def A_coef(self):  # optical density of the film with interference
         self.A = -np.log(self.T)
