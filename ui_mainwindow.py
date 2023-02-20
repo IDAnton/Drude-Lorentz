@@ -15,7 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLayout, QMainWindow,
+from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QDoubleSpinBox, QFormLayout,
+    QHBoxLayout, QLabel, QLayout, QMainWindow,
     QPushButton, QSizePolicy, QVBoxLayout, QWidget)
 
 from mplwidget import MplWidget
@@ -39,10 +40,94 @@ class Ui_MainWindow(object):
         self.GraphHorizontalLayout.setObjectName(u"GraphHorizontalLayout")
         self.ParamsVerticalLayout = QVBoxLayout()
         self.ParamsVerticalLayout.setObjectName(u"ParamsVerticalLayout")
-        self.pushButton_4 = QPushButton(self.centralwidget)
-        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.MainParamsLayout = QFormLayout()
+        self.MainParamsLayout.setObjectName(u"MainParamsLayout")
+        self.EpsilonLimitInput = QDoubleSpinBox(self.centralwidget)
+        self.EpsilonLimitInput.setObjectName(u"EpsilonLimitInput")
+        font = QFont()
+        font.setPointSize(12)
+        self.EpsilonLimitInput.setFont(font)
+        self.EpsilonLimitInput.setLayoutDirection(Qt.LeftToRight)
+        self.EpsilonLimitInput.setAutoFillBackground(False)
+        self.EpsilonLimitInput.setWrapping(False)
+        self.EpsilonLimitInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.EpsilonLimitInput.setDecimals(1)
+        self.EpsilonLimitInput.setMaximum(100.000000000000000)
+        self.EpsilonLimitInput.setValue(50.000000000000000)
 
-        self.ParamsVerticalLayout.addWidget(self.pushButton_4)
+        self.MainParamsLayout.setWidget(0, QFormLayout.LabelRole, self.EpsilonLimitInput)
+
+        self.EpsilonLimitText = QLabel(self.centralwidget)
+        self.EpsilonLimitText.setObjectName(u"EpsilonLimitText")
+        font1 = QFont()
+        font1.setFamilies([u"Arial"])
+        font1.setPointSize(12)
+        font1.setBold(False)
+        self.EpsilonLimitText.setFont(font1)
+
+        self.MainParamsLayout.setWidget(0, QFormLayout.FieldRole, self.EpsilonLimitText)
+
+        self.W_RangeLayout = QHBoxLayout()
+        self.W_RangeLayout.setObjectName(u"W_RangeLayout")
+        self.W2_RangeInput = QDoubleSpinBox(self.centralwidget)
+        self.W2_RangeInput.setObjectName(u"W2_RangeInput")
+        self.W2_RangeInput.setFont(font)
+        self.W2_RangeInput.setLayoutDirection(Qt.LeftToRight)
+        self.W2_RangeInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.W2_RangeInput.setDecimals(0)
+        self.W2_RangeInput.setMaximum(9999.000000000000000)
+        self.W2_RangeInput.setValue(4500.000000000000000)
+
+        self.W_RangeLayout.addWidget(self.W2_RangeInput)
+
+        self.RangeSpliterText = QLabel(self.centralwidget)
+        self.RangeSpliterText.setObjectName(u"RangeSpliterText")
+        self.RangeSpliterText.setFont(font)
+
+        self.W_RangeLayout.addWidget(self.RangeSpliterText)
+
+        self.W1_RangeInput = QDoubleSpinBox(self.centralwidget)
+        self.W1_RangeInput.setObjectName(u"W1_RangeInput")
+        self.W1_RangeInput.setFont(font)
+        self.W1_RangeInput.setLayoutDirection(Qt.LeftToRight)
+        self.W1_RangeInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.W1_RangeInput.setDecimals(0)
+        self.W1_RangeInput.setMaximum(9999.000000000000000)
+        self.W1_RangeInput.setValue(10.000000000000000)
+
+        self.W_RangeLayout.addWidget(self.W1_RangeInput)
+
+
+        self.MainParamsLayout.setLayout(1, QFormLayout.LabelRole, self.W_RangeLayout)
+
+        self.W_RangeText = QLabel(self.centralwidget)
+        self.W_RangeText.setObjectName(u"W_RangeText")
+        font2 = QFont()
+        font2.setFamilies([u"Arial"])
+        font2.setPointSize(12)
+        self.W_RangeText.setFont(font2)
+        self.W_RangeText.setTextFormat(Qt.AutoText)
+
+        self.MainParamsLayout.setWidget(1, QFormLayout.FieldRole, self.W_RangeText)
+
+        self.MembraneThicknessText = QLabel(self.centralwidget)
+        self.MembraneThicknessText.setObjectName(u"MembraneThicknessText")
+        self.MembraneThicknessText.setFont(font2)
+
+        self.MainParamsLayout.setWidget(2, QFormLayout.FieldRole, self.MembraneThicknessText)
+
+        self.ThicknessInput = QDoubleSpinBox(self.centralwidget)
+        self.ThicknessInput.setObjectName(u"ThicknessInput")
+        self.ThicknessInput.setFont(font)
+        self.ThicknessInput.setLayoutDirection(Qt.LeftToRight)
+        self.ThicknessInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.ThicknessInput.setDecimals(0)
+        self.ThicknessInput.setMaximum(99999.000000000000000)
+
+        self.MainParamsLayout.setWidget(2, QFormLayout.LabelRole, self.ThicknessInput)
+
+
+        self.ParamsVerticalLayout.addLayout(self.MainParamsLayout)
 
         self.pushButton_3 = QPushButton(self.centralwidget)
         self.pushButton_3.setObjectName(u"pushButton_3")
@@ -97,7 +182,10 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.EpsilonLimitText.setText(QCoreApplication.translate("MainWindow", u"\u03b5 \u221e", None))
+        self.RangeSpliterText.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.W_RangeText.setText(QCoreApplication.translate("MainWindow", u"\u03c9 range", None))
+        self.MembraneThicknessText.setText(QCoreApplication.translate("MainWindow", u"Membrane thickness (nm)", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))

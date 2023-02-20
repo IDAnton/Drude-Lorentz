@@ -11,7 +11,7 @@ class Data:
         # global params
         self.w_range = w_range
         self.discretization = discretization
-        self.w = np.linspace(self.w_range, self.discretization)
+        self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
 
         # free charge params
         self.free_N = free_N
@@ -33,27 +33,46 @@ class Data:
         self.bound_freq_vibration = np.zeros(MAX_MODES, dtype=np.double)
         self.bound_gamma = np.zeros(MAX_MODES, dtype=np.double)
         # calculated params
-        self.w_plasm_modes = np.zeros(MAX_MODES, dtype=np.complex128)
+        self.w_plasm_0 = None
+        self.w_i_plasm = np.zeros(MAX_MODES, dtype=np.complex128)
         self.epsilon = np.zeros(self.discretization, dtype=np.complex128)
+        self.N_n = np.zeros(self.discretization, dtype=np.double)  # real part of Refractive index
+        self.N_k = np.zeros(self.discretization, dtype=np.double)  # complex part of Refractive index
+
+        self.calculate()
+
+    def calculate(self):
+        self.calculate_w_0_plasm()
+        self.calculate_w_i_plasm()
+        self.calculate_epsilon()
+        self.real_and_imag_of_sqrt_epsilon()
+
+    def update_w_range(self):
+        self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
 
     def calculate_w_0_plasm(self):  # calculating freq of w0, returns 1 number = w0
-        return (self.free_charge / 2 * np.pi * C) * (
+        self.w_plasm_0 = (self.free_charge / 2 * np.pi * C) * (
             np.sqrt(4 * np.pi * self.free_N / self.free_mass * self.membrane_epsilon_limit))
 
     def calculate_w_i_plasm(self):  # calculating freq for every mode, returns list with all freq (w_i)
-        return (self.bound_effective_charges / 2 * np.pi * C) * (
+        self.w_i_plasm = (self.bound_effective_charges / 2 * np.pi * C) * (
             np.sqrt(4 * np.pi * self.bound_N / 3 * self.bound_masses * self.membrane_epsilon_limit))
 
     def calculate_epsilon(self):  # calculating epsilon(freq), returns epsilon(freq)
-        return self.membrane_epsilon_limit * (1 - np.power(self.calculate_w_0_plasm(), 2) / (
-                    np.power(self.free_freq_vibration, 2) + j * self.free_freq_vibration * self.free_gamma) + np.sum(
-            np.power(self.calculate_w_i_plasm(), 2) / (np.power(self.bound_freq_vibration,
-                                                                2) - self.free_freq_vibration - self.free_freq_vibration * j * self.bound_gamma)))
+        epsilon_free = self.membrane_epsilon_limit * (1 - np.power(self.w_plasm_0, 2) / (
+                np.power(self.w, 2) + 1j * self.w * self.free_gamma))
+        bounded_part = np.zeros(self.discretization, dtype=np.complex128)
 
-    def real_and_imag_of_sqrt_epsilon(
-            self):  # calculating real part and imag part of epsilon in square, returns imag and real parts of N = sqrt(epsilon)
-        N = np.sqrt(self.calculate_epsilon())
-        return np.imag(N), np.real(N)
+        for gamma_i, w_i in zip(self.bound_gamma, self.bound_freq_vibration):
+            bounded_part += 1 / (np.power(w_i, 2) - self.w - self.w * 1j * gamma_i)
+        bounded_part *= np.sum(self.w_i_plasm)
+        self.epsilon = epsilon_free + bounded_part
+
+    def real_and_imag_of_sqrt_epsilon(self):
+        """calculating real part and imag part of epsilon in square, returns imag and real parts of N = sqrt(
+        epsilon) """
+        N = np.sqrt(self.epsilon)
+        self.N_n, self.N_n = np.real(N), np.imag(N)
 
     def adsorbtion_coefficient_calc(self):  # calculating adsorbtion coef, returns alpha coef
         alpha = 4 * np.pi * self.real_and_imag_of_sqrt_epsilon()[0] * self.bound_freq_vibration
@@ -62,4 +81,3 @@ class Data:
     def optical_density_of_film(self):  # calculating optical density of the film, returns D coef
         D = self.adsorbtion_coefficient_calc() * self.thickness
         return D
-
