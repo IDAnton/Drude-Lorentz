@@ -9,6 +9,7 @@ class Data:
                  free_gamma=1, membrane_epsilon_limit=2, bound_number=1, thickness=100, N_media=1, free_charge=4.8e-10,
                  free_freq_vibration=1100):
         # global params
+        self.discretization = discretization
         self.phase = np.zeros(self.discretization, dtype=np.double)
         self.T = np.zeros(self.discretization, dtype=np.double)
         self.R_23 = np.zeros(self.discretization, dtype=np.double)
@@ -17,7 +18,6 @@ class Data:
         self.alpha = np.zeros(self.discretization, dtype=np.double)
         self.A = np.zeros(self.discretization, dtype=np.double)
         self.w_range = w_range
-        self.discretization = discretization
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
         N = 1  # ??
         #self.r_12 = (self.N_air - N) / (self.N_air + N)
