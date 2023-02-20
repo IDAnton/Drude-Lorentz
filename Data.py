@@ -7,12 +7,22 @@ MAX_MODES = 10
 class Data:
     def __init__(self, w_range=(10, 4500), discretization=1000, free_N=10e10, free_mass=9.1e-28,
                  free_gamma=30, membrane_epsilon_limit=2, modes_number=1, thickness=100, N_media=1, free_charge=4.8,
-                 free_freq_vibration=1100):
+                 free_freq_vibration=1100, N_air=1):
         # global params
         self.w_range = w_range
         self.discretization = discretization
         self.w = np.linspace(self.w_range, self.discretization)
-
+        self.epsilon_real = np.real(self.calculate_epsilon())  # imag part of epsilon
+        self.epsilon_imag = np.imag(self.calculate_epsilon())  # real part of epsilon
+        self.n = self.real_and_imag_of_sqrt_epsilon()[2]  # real part of N (n(freq))
+        self.k = self.real_and_imag_of_sqrt_epsilon()[1]  # imag part of N (k(freq))
+        self.N = self.real_and_imag_of_sqrt_epsilon()[0]  # N refraction coefficient
+        self.R_12 = self.reflection_12_23()[0]  # R_12 reflection coefficient 1-2
+        self.R_23 = self.reflection_12_23()[1]  # R_23 reflection coefficient 2-3
+        self.alpha = self.adsorbtion_coefficient_calc()  # adsorbtion coefficient
+        self.T = self.transmission_of_the_film()  # transmission of the film
+        self.A = -np.log(self.T)  # optical density of the film with interference
+        self.D = self.optical_density_of_the_film()  # optical density of the film without interference
         # free charge params
         self.free_N = free_N
         self.free_mass = free_mass
@@ -23,6 +33,7 @@ class Data:
         self.membrane_epsilon_limit = membrane_epsilon_limit
         self.thickness = thickness
         self.N_media = N_media
+        self.N_air = N_air
         self.N_media_from_w = None
 
         # modes params:
@@ -46,20 +57,32 @@ class Data:
 
     def calculate_epsilon(self):  # calculating epsilon(freq), returns epsilon(freq)
         return self.membrane_epsilon_limit * (1 - np.power(self.calculate_w_0_plasm(), 2) / (
-                    np.power(self.free_freq_vibration, 2) + j * self.free_freq_vibration * self.free_gamma) + np.sum(
+                np.power(self.free_freq_vibration, 2) + j * self.free_freq_vibration * self.free_gamma) + np.sum(
             np.power(self.calculate_w_i_plasm(), 2) / (np.power(self.bound_freq_vibration,
                                                                 2) - self.free_freq_vibration - self.free_freq_vibration * j * self.bound_gamma)))
 
     def real_and_imag_of_sqrt_epsilon(
             self):  # calculating real part and imag part of epsilon in square, returns imag and real parts of N = sqrt(epsilon)
         N = np.sqrt(self.calculate_epsilon())
-        return np.imag(N), np.real(N)
+        return N, np.imag(N), np.real(N)
 
     def adsorbtion_coefficient_calc(self):  # calculating adsorbtion coef, returns alpha coef
-        alpha = 4 * np.pi * self.real_and_imag_of_sqrt_epsilon()[0] * self.bound_freq_vibration
+        alpha = 4 * np.pi * self.real_and_imag_of_sqrt_epsilon()[1] * self.bound_freq_vibration
         return alpha
 
-    def optical_density_of_film(self):  # calculating optical density of the film, returns D coef
+    def optical_density_of_the_film(self):  # calculating optical density of the film, returns D coef
         D = self.adsorbtion_coefficient_calc() * self.thickness
         return D
 
+    def reflection_12_23(self):  # air-film and film-environment
+        N = self.real_and_imag_of_sqrt_epsilon()[0]  # refractive index N
+        r_12 = (self.N_air - N) / (self.N_air + N)
+        r_23 = (N - self.N_media) / (N + self.N_media)
+        R_12 = r_12 * np.conjugate(r_12)
+        R_23 = r_23 * np.conjugate(r_23)
+        return R_12, R_23
+
+    def transmission_of_the_film(self):
+        delta = 2 * self.thickness * self.n
+        T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.bound_freq_vibration))
+        return T
