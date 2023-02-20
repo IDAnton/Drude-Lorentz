@@ -72,23 +72,21 @@ class Data:
     def calculate_w_0_plasm(self):  # calculating freq of w0, returns 1 number = w0
         self.w_plasm_0 = self.free_charge / (2 * np.pi * C) * \
                          np.sqrt(4 * np.pi * self.free_N / (self.free_mass * self.membrane_epsilon_limit))
-        print(self.w_plasm_0)
+        #print(self.w_plasm_0)
 
     def calculate_w_i_plasm(self):  # calculating freq for every mode, returns list with all freq (w_i)
         self.w_i_plasm = self.bound_effective_charges / (2 * np.pi * C) * \
             np.sqrt(4 * np.pi * self.bound_N / (3 * self.bound_masses * self.membrane_epsilon_limit))
-        print(self.w_i_plasm)
+        #print(self.w_i_plasm)
 
     def calculate_epsilon(self):  # calculating epsilon(freq), returns epsilon(freq)
-        epsilon_free = self.membrane_epsilon_limit * (1 - np.power(self.w_plasm_0, 2) / (
-                np.power(self.w, 2) + 1j * self.w * self.free_gamma))
+        epsilon_free = 1 - np.power(self.w_plasm_0, 2) / (np.power(self.w, 2) + 1j * self.w * self.free_gamma)
         bounded_part = np.zeros(self.discretization, dtype=np.complex128)
 
         for i in range(self.bound_number):
-            bounded_part += 1 / (np.power(self.bound_freq_vibration[i], 2) - np.power(self.w, 2) - self.w * 1j * self.bound_gamma[i])
-        bounded_part = bounded_part * self.membrane_epsilon_limit * np.sum(np.power(self.w_i_plasm[:self.bound_number], 2))
+            bounded_part += self.w_i_plasm[i]**2 / (self.bound_freq_vibration[i] ** 2 - np.power(self.w, 2) - self.w * 1j * self.bound_gamma[i])
         #print(bounded_part)
-        self.epsilon = epsilon_free + bounded_part
+        self.epsilon = self.membrane_epsilon_limit * (epsilon_free + bounded_part)
 
     def real_and_imag_of_sqrt_epsilon(self):
         """calculating real part and imag part of epsilon in square, returns imag and real parts of N = sqrt(
