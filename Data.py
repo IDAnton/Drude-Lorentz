@@ -69,7 +69,7 @@ class Data:
             np.sqrt(4 * np.pi * self.free_N / self.free_mass * self.membrane_epsilon_limit))
 
     def calculate_w_i_plasm(self):  # calculating freq for every mode, returns list with all freq (w_i)
-        return (self.bound_effective_charges / 2 * np.pi * C) * (
+        self.w_i_plasm = (self.bound_effective_charges / 2 * np.pi * C) * (
             np.sqrt(4 * np.pi * self.bound_N / 3 * self.bound_masses * self.membrane_epsilon_limit))
 
     def calculate_epsilon(self):  # calculating epsilon(freq), returns epsilon(freq)
