@@ -12,22 +12,19 @@ class Data:
         self.w_range = w_range
         self.discretization = discretization
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
+        N = 1  # ??
+        #self.r_12 = (self.N_air - N) / (self.N_air + N)
+        #self.r_23 = (N - self.N_media) / (N + self.N_media)
+        #self.phi = self.phase()  # phase phi_12(freq)
+        #self.epsilon_real = np.real(self.calculate_epsilon())  # imag part of epsilon
+        #self.epsilon_imag = np.imag(self.calculate_epsilon())  # real part of epsilon
 
-        self.w = np.linspace(self.w_range, self.discretization)
-        self.r_12 = (self.N_air - N) / (self.N_air + N)
-        self.r_23 = (N - self.N_media) / (N + self.N_media)
-        self.phi = self.phase()  # phase phi_12(freq)
-        self.epsilon_real = np.real(self.calculate_epsilon())  # imag part of epsilon
-        self.epsilon_imag = np.imag(self.calculate_epsilon())  # real part of epsilon
-        self.n = self.real_and_imag_of_sqrt_epsilon()[2]  # real part of N (n(freq))
-        self.k = self.real_and_imag_of_sqrt_epsilon()[1]  # imag part of N (k(freq))
-        self.N = self.real_and_imag_of_sqrt_epsilon()[0]  # N refraction coefficient
-        self.R_12 = self.reflection_12_23()[0]  # R_12 reflection coefficient 1-2
-        self.R_23 = self.reflection_12_23()[1]  # R_23 reflection coefficient 2-3
-        self.alpha = self.adsorbtion_coefficient_calc()  # adsorbtion coefficient
-        self.T = self.transmission_of_the_film()  # transmission of the film
-        self.A = -np.log(self.T)  # optical density of the film with interference
-        self.D = self.optical_density_of_the_film()  # optical density of the film without interference
+        #self.R_12 = self.reflection_12_23()[0]  # R_12 reflection coefficient 1-2
+        #self.R_23 = self.reflection_12_23()[1]  # R_23 reflection coefficient 2-3
+        #self.alpha = self.adsorbtion_coefficient_calc()  # adsorbtion coefficient
+        #self.T = self.transmission_of_the_film()  # transmission of the film
+        #.A = -np.log(self.T)  # optical density of the film with interference
+        #self.D = self.optical_density_of_the_film()  # optical density of the film without interference
         # free charge params
         self.free_N = free_N
         self.free_mass = free_mass
@@ -38,7 +35,8 @@ class Data:
         self.membrane_epsilon_limit = membrane_epsilon_limit
         self.thickness = thickness
         self.N_media = N_media
-        self.N_air = N_air
+        N_air = 1
+        self.N_air = N_air # ??
         self.N_media_from_w = None
 
         # modes params:
@@ -67,7 +65,7 @@ class Data:
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
 
     def calculate_w_0_plasm(self):  # calculating freq of w0, returns 1 number = w0
-        return (self.free_charge / 2 * np.pi * C) * (
+        self.w_plasm_0 = (self.free_charge / 2 * np.pi * C) * (
             np.sqrt(4 * np.pi * self.free_N / self.free_mass * self.membrane_epsilon_limit))
 
     def calculate_w_i_plasm(self):  # calculating freq for every mode, returns list with all freq (w_i)
