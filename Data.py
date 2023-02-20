@@ -9,6 +9,12 @@ class Data:
                  free_gamma=1, membrane_epsilon_limit=2, bound_number=1, thickness=100, N_media=1, free_charge=4.8e-10,
                  free_freq_vibration=1100):
         # global params
+        self.phase = None
+        self.T = None
+        self.R_23 = None
+        self.R_12 = None
+        self.D = None
+        self.alpha = None
         self.w_range = w_range
         self.discretization = discretization
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
@@ -95,22 +101,18 @@ class Data:
         self.N_n, self.N_n = np.real(N), np.imag(N)
 
     def adsorbtion_coefficient_calc(self):  # calculating adsorbtion coef, returns alpha coef
-        alpha = 4 * np.pi * self.real_and_imag_of_sqrt_epsilon()[1] * self.bound_freq_vibration
-        return alpha
-
+        self.alpha = 4 * np.pi * self.real_and_imag_of_sqrt_epsilon()[1] * self.bound_freq_vibration
+        
     def optical_density_of_film(self):  # calculating optical density of the film, returns D coef
-        D = self.adsorbtion_coefficient_calc() * self.thickness
-        return D
+        self.D = self.adsorbtion_coefficient_calc() * self.thickness
 
     def reflection_12_23(self):  # air-film and film-environment
-        R_12 = self.r_12 * np.conjugate(self.r_12)
-        R_23 = self.r_23 * np.conjugate(self.r_23)
-        return R_12, R_23
+        self.R_12 = self.r_12 * np.conjugate(self.r_12)
+        self.R_23 = self.r_23 * np.conjugate(self.r_23)
 
     def transmission_of_the_film(self):  # returns transmission
         delta = 2 * self.thickness * self.n
-        T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.bound_freq_vibration))
-        return T
-
+        self.T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.bound_freq_vibration))
+        
     def phase(self):  # returns phase_12
-        return np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
+        self.phase = np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
