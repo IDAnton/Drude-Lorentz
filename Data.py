@@ -12,6 +12,9 @@ class Data:
         self.w_range = w_range
         self.discretization = discretization
         self.w = np.linspace(self.w_range, self.discretization)
+        self.r_12 = (self.N_air - N) / (self.N_air + N)
+        self.r_23 = (N - self.N_media) / (N + self.N_media)
+        self.phi = self.phase()  # phase phi_12(freq)
         self.epsilon_real = np.real(self.calculate_epsilon())  # imag part of epsilon
         self.epsilon_imag = np.imag(self.calculate_epsilon())  # real part of epsilon
         self.n = self.real_and_imag_of_sqrt_epsilon()[2]  # real part of N (n(freq))
@@ -75,14 +78,14 @@ class Data:
         return D
 
     def reflection_12_23(self):  # air-film and film-environment
-        N = self.real_and_imag_of_sqrt_epsilon()[0]  # refractive index N
-        r_12 = (self.N_air - N) / (self.N_air + N)
-        r_23 = (N - self.N_media) / (N + self.N_media)
-        R_12 = r_12 * np.conjugate(r_12)
-        R_23 = r_23 * np.conjugate(r_23)
+        R_12 = self.r_12 * np.conjugate(self.r_12)
+        R_23 = self.r_23 * np.conjugate(self.r_23)
         return R_12, R_23
 
-    def transmission_of_the_film(self):
+    def transmission_of_the_film(self):  # returns transmission
         delta = 2 * self.thickness * self.n
         T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.bound_freq_vibration))
         return T
+
+    def phase(self):  # returns phase_12
+        return np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
