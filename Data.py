@@ -1,11 +1,12 @@
 import numpy as np
 
 C = 2.998e10
+ELECTRON_MASS_GRAMS = 9.1e-28
 MAX_MODES = 10
 
 
 class Data:
-    def __init__(self, w_range=(10, 4500), discretization=1000, free_N=1e22, free_mass=9.1e-24,
+    def __init__(self, w_range=(10, 4500), discretization=1000, free_N=1e22, free_mass=9.1e-28,
                  free_gamma=1, membrane_epsilon_limit=2, bound_number=1, thickness=100, N_media=1, free_charge=4.8e-10,
                  free_freq_vibration=1100):
         # global params

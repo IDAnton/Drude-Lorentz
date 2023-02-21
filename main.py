@@ -3,7 +3,9 @@ import time
 import numpy as np
 import qdarkstyle
 from PySide6 import QtWidgets
-from Data import Data
+
+
+from Data import Data, ELECTRON_MASS_GRAMS
 from ui_mainwindow import Ui_MainWindow
 
 from mplwidget import Canvas
@@ -21,6 +23,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.W1_RangeInput.valueChanged.connect(self.update_w_range)
         self.W2_RangeInput.valueChanged.connect(self.update_w_range)
         self.ThicknessInput.valueChanged.connect(self.update_thickness)
+
+        self.NInput.valueChanged.connect(self.update_N)
+        self.NInputPow.valueChanged.connect(self.update_N)
+
+        self.ChargeMassInput.valueChanged.connect(self.update_mass)
+        self.GammaInput.valueChanged.connect(self.update_gamma)
+
+    def update_gamma(self):
+        self.data.free_gamma = self.GammaInput.value()
+        self.update_data()
+
+    def update_mass(self):
+        self.data.free_mass = self.ChargeMassInput.value() * ELECTRON_MASS_GRAMS
+        self.update_data()
+
+    def update_N(self):
+        self.data.free_N = self.NInput.value() * np.power(10, self.NInputPow.value())
+        print(self.data.free_N)
+        self.update_data()
 
     def update_epsilon(self):
         self.data.membrane_epsilon_limit = self.EpsilonLimitInput.value()
