@@ -65,17 +65,16 @@ class Data:
 
         # self.bound_gamma[0] = 1
         # self.bound_freq_vibration[0] = 1
-        # self.bound_effective_charges[0] = self.free_charge
-        # self.bound_masses[0] = self.free_mass
+        # self.bound_effective_charges[0] = ELECTRON_CHARGE
+        # self.bound_masses[0] = ATOMIC_MASS_UNITS * 10000
         # self.bound_N[0] = 10e22
-        self.calculate()
+        # self.calculate()
 
     def calculate(self):
         self.calculate_w_0_plasm()
         self.calculate_w_i_plasm()
         self.calculate_epsilon()
         self.real_and_imag_of_sqrt_epsilon()
-        print(self.N_n)
 
     def update_w_range(self):
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
@@ -100,7 +99,7 @@ class Data:
         """calculating real part and imag part of epsilon in square, returns imag and real parts of N = sqrt(
         epsilon) """
         N = np.sqrt(self.epsilon)
-        self.N_n, self.N_n = np.real(N), np.imag(N)
+        self.N_n, self.N_k = np.real(N), np.imag(N)
 
     def adsorbtion_coefficient_calc(self):  # calculating adsorbtion coef, returns alpha coef
         self.alpha = 4 * np.pi * self.real_and_imag_of_sqrt_epsilon()[1] * self.bound_freq_vibration
