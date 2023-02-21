@@ -2,12 +2,14 @@ import numpy as np
 
 C = 2.998e10
 ELECTRON_MASS_GRAMS = 9.1e-28
+ELECTRON_CHARGE = 4.8e-10
+ATOMIC_MASS_UNITS = 1.66e-24
 MAX_MODES = 10
 
 
 class Data:
     def __init__(self, w_range=(10, 4500), discretization=1000, free_N=1e22, free_mass=9.1e-28,
-                 free_gamma=1, membrane_epsilon_limit=2, bound_number=1, thickness=100, N_media=1, free_charge=4.8e-10,
+                 free_gamma=1, membrane_epsilon_limit=2, bound_number=0, thickness=100, N_media=1, free_charge=ELECTRON_CHARGE,
                  free_freq_vibration=1100):
         # global params
         self.discretization = discretization
@@ -61,11 +63,11 @@ class Data:
         self.N_n = np.zeros(self.discretization, dtype=np.double)  # real part of Refractive index
         self.N_k = np.zeros(self.discretization, dtype=np.double)  # complex part of Refractive index
 
-        self.bound_gamma[0] = 1
-        self.bound_freq_vibration[0] = 1
-        self.bound_effective_charges[0] = self.free_charge
-        self.bound_masses[0] = self.free_mass
-        self.bound_N[0] = 10e22
+        # self.bound_gamma[0] = 1
+        # self.bound_freq_vibration[0] = 1
+        # self.bound_effective_charges[0] = self.free_charge
+        # self.bound_masses[0] = self.free_mass
+        # self.bound_N[0] = 10e22
         self.calculate()
 
     def calculate(self):
@@ -73,6 +75,7 @@ class Data:
         self.calculate_w_i_plasm()
         self.calculate_epsilon()
         self.real_and_imag_of_sqrt_epsilon()
+        print(self.N_n)
 
     def update_w_range(self):
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
@@ -80,12 +83,10 @@ class Data:
     def calculate_w_0_plasm(self):  # calculating freq of w0, returns 1 number = w0
         self.w_plasm_0 = self.free_charge / (2 * np.pi * C) * \
                          np.sqrt(4 * np.pi * self.free_N / (self.free_mass * self.membrane_epsilon_limit))
-        #print(self.w_plasm_0)
 
     def calculate_w_i_plasm(self):  # calculating freq for every mode, returns list with all freq (w_i)
         self.w_i_plasm = self.bound_effective_charges / (2 * np.pi * C) * \
             np.sqrt(4 * np.pi * self.bound_N / (3 * self.bound_masses * self.membrane_epsilon_limit))
-        #print(self.w_i_plasm)
 
     def calculate_epsilon(self):  # calculating epsilon(freq), returns epsilon(freq)
         epsilon_free = 1 - np.power(self.w_plasm_0, 2) / (np.power(self.w, 2) + 1j * self.w * self.free_gamma)
@@ -93,7 +94,6 @@ class Data:
 
         for i in range(self.bound_number):
             bounded_part += self.w_i_plasm[i]**2 / (self.bound_freq_vibration[i] ** 2 - np.power(self.w, 2) - self.w * 1j * self.bound_gamma[i])
-        #print(bounded_part)
         self.epsilon = self.membrane_epsilon_limit * (epsilon_free + bounded_part)
 
     def real_and_imag_of_sqrt_epsilon(self):

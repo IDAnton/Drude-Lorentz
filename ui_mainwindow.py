@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QDoubleSpinBox, QFormLayout,
-    QFrame, QHBoxLayout, QLabel, QLayout,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDoubleSpinBox,
+    QFormLayout, QFrame, QHBoxLayout, QLabel,
+    QLayout, QMainWindow, QPushButton, QSizePolicy,
+    QSpacerItem, QSpinBox, QTabWidget, QVBoxLayout,
+    QWidget)
 
 from mplwidget import MplWidget
 
@@ -27,8 +28,9 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(1106, 755)
+        MainWindow.resize(974, 659)
         MainWindow.setLayoutDirection(Qt.RightToLeft)
+        MainWindow.setTabShape(QTabWidget.Rounded)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setEnabled(True)
@@ -39,13 +41,18 @@ class Ui_MainWindow(object):
         self.MainVerticalLayout.setSizeConstraint(QLayout.SetMaximumSize)
         self.GraphHorizontalLayout = QHBoxLayout()
         self.GraphHorizontalLayout.setObjectName(u"GraphHorizontalLayout")
+        self.GraphHorizontalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.ParamsVerticalLayout = QVBoxLayout()
         self.ParamsVerticalLayout.setObjectName(u"ParamsVerticalLayout")
+        self.ParamsVerticalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.MainParamsLayout = QFormLayout()
         self.MainParamsLayout.setObjectName(u"MainParamsLayout")
+        self.MainParamsLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.MainParamsLayout.setFieldGrowthPolicy(QFormLayout.AllNonFixedFieldsGrow)
+        self.MainParamsLayout.setRowWrapPolicy(QFormLayout.DontWrapRows)
         self.EpsilonLimitInput = QDoubleSpinBox(self.centralwidget)
         self.EpsilonLimitInput.setObjectName(u"EpsilonLimitInput")
-        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.EpsilonLimitInput.sizePolicy().hasHeightForWidth())
@@ -148,6 +155,23 @@ class Ui_MainWindow(object):
 
         self.MainParamsLayout.setWidget(2, QFormLayout.FieldRole, self.MembraneThicknessText)
 
+        self.ChargeCountLabel = QLabel(self.centralwidget)
+        self.ChargeCountLabel.setObjectName(u"ChargeCountLabel")
+        self.ChargeCountLabel.setFont(font)
+
+        self.MainParamsLayout.setWidget(3, QFormLayout.FieldRole, self.ChargeCountLabel)
+
+        self.BoundCountInput = QSpinBox(self.centralwidget)
+        self.BoundCountInput.setObjectName(u"BoundCountInput")
+        self.BoundCountInput.setFont(font)
+        self.BoundCountInput.setLayoutDirection(Qt.LeftToRight)
+        self.BoundCountInput.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.BoundCountInput.setMinimum(0)
+        self.BoundCountInput.setMaximum(10)
+        self.BoundCountInput.setValue(0)
+
+        self.MainParamsLayout.setWidget(3, QFormLayout.LabelRole, self.BoundCountInput)
+
 
         self.ParamsVerticalLayout.addLayout(self.MainParamsLayout)
 
@@ -157,6 +181,18 @@ class Ui_MainWindow(object):
         self.line.setFrameShadow(QFrame.Sunken)
 
         self.ParamsVerticalLayout.addWidget(self.line)
+
+        self.ChargeComboBox = QComboBox(self.centralwidget)
+        self.ChargeComboBox.addItem("")
+        self.ChargeComboBox.setObjectName(u"ChargeComboBox")
+        self.ChargeComboBox.setFont(font)
+        self.ChargeComboBox.setLayoutDirection(Qt.LeftToRight)
+        self.ChargeComboBox.setEditable(False)
+        self.ChargeComboBox.setMaxVisibleItems(10)
+        self.ChargeComboBox.setMaxCount(200)
+        self.ChargeComboBox.setDuplicatesEnabled(False)
+
+        self.ParamsVerticalLayout.addWidget(self.ChargeComboBox)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -224,8 +260,11 @@ class Ui_MainWindow(object):
 
         self.ParamsVerticalLayout.addLayout(self.horizontalLayout)
 
-        self.FreeChargeLayout = QFormLayout()
-        self.FreeChargeLayout.setObjectName(u"FreeChargeLayout")
+        self.ChargeLayout = QFormLayout()
+        self.ChargeLayout.setObjectName(u"ChargeLayout")
+        self.ChargeLayout.setSizeConstraint(QLayout.SetMaximumSize)
+        self.ChargeLayout.setFieldGrowthPolicy(QFormLayout.AllNonFixedFieldsGrow)
+        self.ChargeLayout.setRowWrapPolicy(QFormLayout.DontWrapRows)
         self.ChargeMassInput = QDoubleSpinBox(self.centralwidget)
         self.ChargeMassInput.setObjectName(u"ChargeMassInput")
         sizePolicy6 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -241,19 +280,13 @@ class Ui_MainWindow(object):
         self.ChargeMassInput.setMaximum(10000.000000000000000)
         self.ChargeMassInput.setValue(1.000000000000000)
 
-        self.FreeChargeLayout.setWidget(1, QFormLayout.LabelRole, self.ChargeMassInput)
+        self.ChargeLayout.setWidget(1, QFormLayout.LabelRole, self.ChargeMassInput)
 
         self.ChargeMassLabel = QLabel(self.centralwidget)
         self.ChargeMassLabel.setObjectName(u"ChargeMassLabel")
         self.ChargeMassLabel.setFont(font)
 
-        self.FreeChargeLayout.setWidget(1, QFormLayout.FieldRole, self.ChargeMassLabel)
-
-        self.GammaLabel = QLabel(self.centralwidget)
-        self.GammaLabel.setObjectName(u"GammaLabel")
-        self.GammaLabel.setFont(font)
-
-        self.FreeChargeLayout.setWidget(2, QFormLayout.FieldRole, self.GammaLabel)
+        self.ChargeLayout.setWidget(1, QFormLayout.FieldRole, self.ChargeMassLabel)
 
         self.GammaInput = QDoubleSpinBox(self.centralwidget)
         self.GammaInput.setObjectName(u"GammaInput")
@@ -264,10 +297,62 @@ class Ui_MainWindow(object):
         self.GammaInput.setMaximum(99999.990000000005239)
         self.GammaInput.setValue(30.000000000000000)
 
-        self.FreeChargeLayout.setWidget(2, QFormLayout.LabelRole, self.GammaInput)
+        self.ChargeLayout.setWidget(2, QFormLayout.LabelRole, self.GammaInput)
+
+        self.GammaLabel = QLabel(self.centralwidget)
+        self.GammaLabel.setObjectName(u"GammaLabel")
+        self.GammaLabel.setFont(font)
+
+        self.ChargeLayout.setWidget(2, QFormLayout.FieldRole, self.GammaLabel)
+
+        self.EffectiveChargeLabel = QLabel(self.centralwidget)
+        self.EffectiveChargeLabel.setObjectName(u"EffectiveChargeLabel")
+        self.EffectiveChargeLabel.setFont(font)
+
+        self.ChargeLayout.setWidget(3, QFormLayout.FieldRole, self.EffectiveChargeLabel)
+
+        self.EffectiveChargeInput = QDoubleSpinBox(self.centralwidget)
+        self.EffectiveChargeInput.setObjectName(u"EffectiveChargeInput")
+        sizePolicy5.setHeightForWidth(self.EffectiveChargeInput.sizePolicy().hasHeightForWidth())
+        self.EffectiveChargeInput.setSizePolicy(sizePolicy5)
+        self.EffectiveChargeInput.setFont(font)
+        self.EffectiveChargeInput.setLayoutDirection(Qt.LeftToRight)
+        self.EffectiveChargeInput.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.EffectiveChargeInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.EffectiveChargeInput.setDecimals(3)
+        self.EffectiveChargeInput.setMinimum(1.000000000000000)
+        self.EffectiveChargeInput.setMaximum(4.000000000000000)
+
+        self.ChargeLayout.setWidget(3, QFormLayout.LabelRole, self.EffectiveChargeInput)
+
+        self.FreqLabel = QLabel(self.centralwidget)
+        self.FreqLabel.setObjectName(u"FreqLabel")
+        self.FreqLabel.setEnabled(True)
+        self.FreqLabel.setFont(font)
+
+        self.ChargeLayout.setWidget(4, QFormLayout.FieldRole, self.FreqLabel)
+
+        self.FreqInput = QDoubleSpinBox(self.centralwidget)
+        self.FreqInput.setObjectName(u"FreqInput")
+        self.FreqInput.setFont(font)
+        self.FreqInput.setLayoutDirection(Qt.LeftToRight)
+        self.FreqInput.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.FreqInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.FreqInput.setDecimals(0)
+        self.FreqInput.setMaximum(999999.000000000000000)
+        self.FreqInput.setValue(1100.000000000000000)
+
+        self.ChargeLayout.setWidget(4, QFormLayout.LabelRole, self.FreqInput)
 
 
-        self.ParamsVerticalLayout.addLayout(self.FreeChargeLayout)
+        self.ParamsVerticalLayout.addLayout(self.ChargeLayout)
+
+        self.line_2 = QFrame(self.centralwidget)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.HLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
+
+        self.ParamsVerticalLayout.addWidget(self.line_2)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -313,6 +398,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.ChargeComboBox.setCurrentIndex(0)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -322,11 +410,17 @@ class Ui_MainWindow(object):
         self.RangeSpliterText.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.W_RangeText.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0438\u0430\u043f\u0430\u0437\u043e\u043d \u0447\u0430\u0441\u0442\u043e\u0442", None))
         self.MembraneThicknessText.setText(QCoreApplication.translate("MainWindow", u"\u0422\u043e\u043b\u0449\u0438\u043d\u0430 \u043c\u0435\u043c\u0431\u0440\u0430\u043d\u044b", None))
+        self.ChargeCountLabel.setText(QCoreApplication.translate("MainWindow", u"\u0427\u0438\u0441\u043b\u043e \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0445 \u0437\u0430\u0440\u044f\u0434\u043e\u0432 ", None))
+        self.ChargeComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439 \u0437\u0430\u0440\u044f\u0434", None))
+
+        self.ChargeComboBox.setCurrentText(QCoreApplication.translate("MainWindow", u"\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439 \u0437\u0430\u0440\u044f\u0434", None))
         self.NInputPow.setSuffix("")
         self.Npow.setText(QCoreApplication.translate("MainWindow", u"\u2022 10 ^", None))
         self.NLabel.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043d\u0446\u0435\u043d\u0442\u0440\u0430\u0446\u0438\u044f", None))
         self.ChargeMassLabel.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0430\u0441\u0441\u0430 \u0437\u0430\u0440\u044f\u0434\u0430", None))
         self.GammaLabel.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u0442\u0443\u0445\u0430\u043d\u0438\u0435 \u043a\u043e\u043b\u0435\u0431\u0430\u043d\u0438\u0439", None))
+        self.EffectiveChargeLabel.setText(QCoreApplication.translate("MainWindow", u"\u042d\u0444\u0444\u0435\u043a\u0442\u0438\u0432\u043d\u044b\u0439 \u0437\u0430\u0440\u044f\u0434 ", None))
+        self.FreqLabel.setText(QCoreApplication.translate("MainWindow", u"\u0427\u0430\u0441\u0442\u043e\u0442\u0430 \u043a\u043e\u043b\u0435\u0431\u0430\u043d\u0438\u0439", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
     # retranslateUi
