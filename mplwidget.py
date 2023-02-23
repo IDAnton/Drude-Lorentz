@@ -1,6 +1,8 @@
 from PySide6 import QtWidgets
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as Canvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+
 import matplotlib.pyplot as plt
 
 
@@ -10,7 +12,7 @@ class MplCanvas(Canvas):
         self.ax = self.fig.add_subplot(111)
         # self.ax.set_facecolor("#121e29")
         # self.fig.set_facecolor("#121e29")
-        self.fig.tight_layout(pad=0.5, h_pad=0.5, w_pad=0.5)
+        self.fig.tight_layout(pad=0.25, h_pad=0.25, w_pad=0.25)
         Canvas.__init__(self, self.fig)
         Canvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         Canvas.updateGeometry(self)
@@ -23,6 +25,9 @@ class MplWidget(QtWidgets.QWidget):
         self.vbl = QtWidgets.QVBoxLayout()  # Set box for plotting
         self.vbl.addWidget(self.canvas)
         self.setLayout(self.vbl)
+
+        self.toolbar = NavigationToolbar(self.canvas, self)  # add Toolbar
+        self.vbl.addWidget(self.toolbar)
 
         self.N_n_plot, = self.canvas.ax.plot([], [])
         self.N_k_plot, = self.canvas.ax.plot([], [])
