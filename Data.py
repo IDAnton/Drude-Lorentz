@@ -66,9 +66,9 @@ class Data:
     def init_new_charge(self):
         i = self.bound_number
         self.bound_gamma[i] = 1
-        self.bound_freq_vibration[i] = 1
+        self.bound_freq_vibration[i] = 1000
         self.bound_effective_charges[i] = ELECTRON_CHARGE
-        self.bound_masses[i] = ATOMIC_MASS_UNITS * 10000
+        self.bound_masses[i] = ATOMIC_MASS_UNITS * 1
         self.bound_N[i] = 1e22
 
     def calculate(self):

@@ -38,9 +38,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.FreqInput.setVisible(False)
         self.FreqLabel.setVisible(False)
 
+        self.ignore_input = False
+
     def charge_selection(self):
         i = self.ChargeComboBox.currentIndex()
-        print(i)
+        self.ignore_input = True
         if i == 0:  # free charge selected
             self.FreqInput.setVisible(False)
             self.FreqLabel.setVisible(False)
@@ -56,18 +58,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.GammaInput.setValue(self.data.bound_gamma[i])
             self.EffectiveChargeInput.setValue(self.data.bound_effective_charges[i] / ELECTRON_CHARGE)
             self.FreqInput.setValue(self.data.bound_freq_vibration[i])
+        self.ignore_input = False
 
     def update_bound_count(self):
         charge_list = get_charge_name_list()
         if self.BoundCountInput.value() > self.data.bound_number:
             self.data.init_new_charge()
-            self.update()
         self.data.bound_number = self.BoundCountInput.value()
         self.ChargeComboBox.clear()
         self.ChargeComboBox.addItems(charge_list[0:self.data.bound_number + 1])
         self.ChargeComboBox.setCurrentIndex(self.data.bound_number)
+        self.update_data()
 
     def update_charge(self):
+        if self.ignore_input:
+            return
         i = self.ChargeComboBox.currentIndex()
         if i == 0:  # free charge selected
             self.data.free_gamma = self.GammaInput.value()
@@ -100,7 +105,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         start_time = time.time()
         self.data.calculate()
         self.graph.update_plots(self.data)
-        # print("--- %s seconds ---" % (time.time() - start_time))
+        #print("--- %s seconds ---" % (time.time() - start_time))
 
     def sync_defaults(self):
         # sync base values
