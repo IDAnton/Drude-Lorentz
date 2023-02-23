@@ -8,8 +8,8 @@ MAX_MODES = 10
 
 
 class Data:
-    def __init__(self, w_range=(10, 4500), discretization=1000, free_N=1e22, free_mass=9.1e-28,
-                 free_gamma=1, membrane_epsilon_limit=2, bound_number=0, thickness=100, N_media=1, free_charge=ELECTRON_CHARGE,
+    def __init__(self, w_range=(10, 4500), discretization=1000, free_N=1e18, free_mass=ELECTRON_MASS_GRAMS,
+                 free_gamma=1, membrane_epsilon_limit=20, bound_number=0, thickness=100, N_media=1, free_charge=ELECTRON_CHARGE,
                  free_freq_vibration=1100):
         # global params
         self.discretization = discretization
@@ -63,12 +63,13 @@ class Data:
         self.N_n = np.zeros(self.discretization, dtype=np.double)  # real part of Refractive index
         self.N_k = np.zeros(self.discretization, dtype=np.double)  # complex part of Refractive index
 
-        # self.bound_gamma[0] = 1
-        # self.bound_freq_vibration[0] = 1
-        # self.bound_effective_charges[0] = ELECTRON_CHARGE
-        # self.bound_masses[0] = ATOMIC_MASS_UNITS * 10000
-        # self.bound_N[0] = 10e22
-        # self.calculate()
+    def init_new_charge(self):
+        i = self.bound_number
+        self.bound_gamma[i] = 1
+        self.bound_freq_vibration[i] = 1
+        self.bound_effective_charges[i] = ELECTRON_CHARGE
+        self.bound_masses[i] = ATOMIC_MASS_UNITS * 10000
+        self.bound_N[i] = 1e22
 
     def calculate(self):
         self.calculate_w_0_plasm()
