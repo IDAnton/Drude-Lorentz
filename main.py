@@ -17,8 +17,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.data = Data()  # initialize all variables
-        self.sync_defaults()  # set default values to ui
         self.update_data()  # calculate and update graphs
+        self.sync_defaults()  # set default values to ui
 
         # global params
         self.EpsilonLimitInput.valueChanged.connect(self.update_epsilon)
@@ -85,6 +85,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.data.free_mass = self.ChargeMassInput.value() * ELECTRON_MASS_GRAMS
             self.data.free_N = self.NInput.value() * np.power(10, self.NInputPow.value())
             self.data.free_charge = self.EffectiveChargeInput.value() * ELECTRON_CHARGE
+            self.update_data()
+            self.PlasmOmegaText.setText(str(round(self.data.w_plasm_0, 3)))
         else:  # bound charge selected
             i = i - 1
             self.data.bound_masses[i] = self.ChargeMassInput.value() * ATOMIC_MASS_UNITS
@@ -92,7 +94,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.data.bound_gamma[i] = self.GammaInput.value()
             self.data.bound_freq_vibration[i] = self.FreqInput.value()
             self.data.bound_N[i] = self.NInput.value() * np.power(10, self.NInputPow.value())
-        self.update_data()
+            self.update_data()
+            self.PlasmOmegaText.setText(str(round(self.data.w_i_plasm[i], 3)))
 
     def update_epsilon(self):
         self.data.membrane_epsilon_limit = self.EpsilonLimitInput.value()
@@ -126,6 +129,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ChargeMassInput.setValue(self.data.free_mass / ELECTRON_MASS_GRAMS)
         self.GammaInput.setValue(self.data.free_gamma)
         self.EffectiveChargeInput.setValue(self.data.free_charge)
+        self.PlasmOmegaText.setText(str(round(self.data.w_plasm_0, 3)))
 
 
 app = QtWidgets.QApplication(sys.argv)

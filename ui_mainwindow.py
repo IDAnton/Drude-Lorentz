@@ -344,6 +344,18 @@ class Ui_MainWindow(object):
 
         self.ChargeLayout.setWidget(4, QFormLayout.LabelRole, self.FreqInput)
 
+        self.PlasmOmegaHintLabel = QLabel(self.centralwidget)
+        self.PlasmOmegaHintLabel.setObjectName(u"PlasmOmegaHintLabel")
+        self.PlasmOmegaHintLabel.setFont(font)
+
+        self.ChargeLayout.setWidget(5, QFormLayout.FieldRole, self.PlasmOmegaHintLabel)
+
+        self.PlasmOmegaText = QLabel(self.centralwidget)
+        self.PlasmOmegaText.setObjectName(u"PlasmOmegaText")
+        self.PlasmOmegaText.setFont(font)
+
+        self.ChargeLayout.setWidget(5, QFormLayout.LabelRole, self.PlasmOmegaText)
+
 
         self.ParamsVerticalLayout.addLayout(self.ChargeLayout)
 
@@ -515,6 +527,8 @@ class Ui_MainWindow(object):
         self.GammaLabel.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u0442\u0443\u0445\u0430\u043d\u0438\u0435 \u043a\u043e\u043b\u0435\u0431\u0430\u043d\u0438\u0439", None))
         self.EffectiveChargeLabel.setText(QCoreApplication.translate("MainWindow", u"\u042d\u0444\u0444\u0435\u043a\u0442\u0438\u0432\u043d\u044b\u0439 \u0437\u0430\u0440\u044f\u0434 ", None))
         self.FreqLabel.setText(QCoreApplication.translate("MainWindow", u"\u0427\u0430\u0441\u0442\u043e\u0442\u0430 \u043a\u043e\u043b\u0435\u0431\u0430\u043d\u0438\u0439", None))
+        self.PlasmOmegaHintLabel.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043b\u0430\u0437\u043c\u0435\u043d\u043d\u0430\u044f \u0447\u0430\u0441\u0442\u043e\u0442\u0430", None))
+        self.PlasmOmegaText.setText("")
         self.ShowLabel.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043e\u0431\u0440\u0430\u0436\u0430\u0435\u043c\u044b\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u0438", None))
         self.ERealShowButton.setText(QCoreApplication.translate("MainWindow", u"\u03b5\u2019(\u03bd)", None))
         self.EImgShowButton.setText(QCoreApplication.translate("MainWindow", u"\u03b5\u2019\u2019(\u03bd)", None))
