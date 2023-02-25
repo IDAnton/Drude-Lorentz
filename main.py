@@ -38,6 +38,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.FreqInput.setVisible(False)
         self.FreqLabel.setVisible(False)
 
+        # graph show buttons
+        self.ERealShowButton.stateChanged.connect(lambda state: self.graph.N_n_plot.set_visible(state))
+        self.ERealShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.EImgShowButton.stateChanged.connect(lambda state: self.graph.N_k_plot.set_visible(state))
+        self.EImgShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+
         self.ignore_input = False
 
     def charge_selection(self):

@@ -36,11 +36,11 @@ class MplWidget(QtWidgets.QWidget):
         self.N_k_plot.set_label('N_k')
         self.canvas.ax.legend()
 
-    def update_plots(self, data):
-        self.N_n_plot.set_data(data.w, data.N_n)
-        self.N_k_plot.set_data(data.w, data.N_k)
-        self.canvas.ax.relim()
+    def update_plots(self, data, data_changed=True):
+        if data_changed:
+            self.N_n_plot.set_data(data.w, data.N_n)
+            self.N_k_plot.set_data(data.w, data.N_k)
+        self.canvas.ax.relim(visible_only=True)
         self.canvas.ax.autoscale_view()
         self.canvas.fig.canvas.draw()
         self.canvas.fig.canvas.flush_events()
-        pass

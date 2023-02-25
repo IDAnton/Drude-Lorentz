@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui.ui'
+## Form generated from reading UI file 'Ui.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDoubleSpinBox,
-    QFormLayout, QFrame, QHBoxLayout, QLabel,
-    QLayout, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QSpinBox, QTabWidget, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
+    QDoubleSpinBox, QFormLayout, QFrame, QGridLayout,
+    QHBoxLayout, QLabel, QLayout, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
+    QTabWidget, QVBoxLayout, QWidget)
 
 from mplwidget import MplWidget
 
@@ -354,6 +354,100 @@ class Ui_MainWindow(object):
 
         self.ParamsVerticalLayout.addWidget(self.line_2)
 
+        self.GraphShowLayout = QVBoxLayout()
+        self.GraphShowLayout.setObjectName(u"GraphShowLayout")
+        self.ShowLabel = QLabel(self.centralwidget)
+        self.ShowLabel.setObjectName(u"ShowLabel")
+        self.ShowLabel.setFont(font)
+        self.ShowLabel.setAlignment(Qt.AlignCenter)
+
+        self.GraphShowLayout.addWidget(self.ShowLabel)
+
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.ERealShowButton = QCheckBox(self.centralwidget)
+        self.ERealShowButton.setObjectName(u"ERealShowButton")
+        self.ERealShowButton.setFont(font)
+        self.ERealShowButton.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.ERealShowButton.setLayoutDirection(Qt.RightToLeft)
+        self.ERealShowButton.setChecked(True)
+
+        self.gridLayout.addWidget(self.ERealShowButton, 0, 3, 1, 1)
+
+        self.EImgShowButton = QCheckBox(self.centralwidget)
+        self.EImgShowButton.setObjectName(u"EImgShowButton")
+        self.EImgShowButton.setFont(font)
+        self.EImgShowButton.setChecked(True)
+
+        self.gridLayout.addWidget(self.EImgShowButton, 0, 2, 1, 1)
+
+        self.NShowButton = QCheckBox(self.centralwidget)
+        self.NShowButton.setObjectName(u"NShowButton")
+        self.NShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.NShowButton, 0, 1, 1, 1)
+
+        self.KShowButton = QCheckBox(self.centralwidget)
+        self.KShowButton.setObjectName(u"KShowButton")
+        self.KShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.KShowButton, 0, 0, 1, 1)
+
+        self.RShowButton = QCheckBox(self.centralwidget)
+        self.RShowButton.setObjectName(u"RShowButton")
+        self.RShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.RShowButton, 1, 3, 1, 1)
+
+        self.PhiShowButton = QCheckBox(self.centralwidget)
+        self.PhiShowButton.setObjectName(u"PhiShowButton")
+        self.PhiShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.PhiShowButton, 1, 2, 1, 1)
+
+        self.AlphaShowButton = QCheckBox(self.centralwidget)
+        self.AlphaShowButton.setObjectName(u"AlphaShowButton")
+        self.AlphaShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.AlphaShowButton, 1, 1, 1, 1)
+
+        self.DShowButton = QCheckBox(self.centralwidget)
+        self.DShowButton.setObjectName(u"DShowButton")
+        self.DShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.DShowButton, 1, 0, 1, 1)
+
+        self.TShowButton = QCheckBox(self.centralwidget)
+        self.TShowButton.setObjectName(u"TShowButton")
+        self.TShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.TShowButton, 2, 3, 1, 1)
+
+        self.AShowButton = QCheckBox(self.centralwidget)
+        self.AShowButton.setObjectName(u"AShowButton")
+        self.AShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.AShowButton, 2, 2, 1, 1)
+
+        self.ExpShowButton = QCheckBox(self.centralwidget)
+        self.ExpShowButton.setObjectName(u"ExpShowButton")
+        self.ExpShowButton.setFont(font)
+
+        self.gridLayout.addWidget(self.ExpShowButton, 2, 1, 1, 1)
+
+
+        self.GraphShowLayout.addLayout(self.gridLayout)
+
+
+        self.ParamsVerticalLayout.addLayout(self.GraphShowLayout)
+
+        self.line_3 = QFrame(self.centralwidget)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setFrameShape(QFrame.HLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.ParamsVerticalLayout.addWidget(self.line_3)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.ParamsVerticalLayout.addItem(self.verticalSpacer)
@@ -421,6 +515,18 @@ class Ui_MainWindow(object):
         self.GammaLabel.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u0442\u0443\u0445\u0430\u043d\u0438\u0435 \u043a\u043e\u043b\u0435\u0431\u0430\u043d\u0438\u0439", None))
         self.EffectiveChargeLabel.setText(QCoreApplication.translate("MainWindow", u"\u042d\u0444\u0444\u0435\u043a\u0442\u0438\u0432\u043d\u044b\u0439 \u0437\u0430\u0440\u044f\u0434 ", None))
         self.FreqLabel.setText(QCoreApplication.translate("MainWindow", u"\u0427\u0430\u0441\u0442\u043e\u0442\u0430 \u043a\u043e\u043b\u0435\u0431\u0430\u043d\u0438\u0439", None))
+        self.ShowLabel.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043e\u0431\u0440\u0430\u0436\u0430\u0435\u043c\u044b\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u0438", None))
+        self.ERealShowButton.setText(QCoreApplication.translate("MainWindow", u"\u03b5\u2019(\u03bd)", None))
+        self.EImgShowButton.setText(QCoreApplication.translate("MainWindow", u"\u03b5\u2019\u2019(\u03bd)", None))
+        self.NShowButton.setText(QCoreApplication.translate("MainWindow", u"n(\u03bd)", None))
+        self.KShowButton.setText(QCoreApplication.translate("MainWindow", u"k(\u03bd)", None))
+        self.RShowButton.setText(QCoreApplication.translate("MainWindow", u"R(\u03bd) ", None))
+        self.PhiShowButton.setText(QCoreApplication.translate("MainWindow", u"\u03c6(\u03bd)", None))
+        self.AlphaShowButton.setText(QCoreApplication.translate("MainWindow", u"\u03b1(v)", None))
+        self.DShowButton.setText(QCoreApplication.translate("MainWindow", u"D(\u03bd)", None))
+        self.TShowButton.setText(QCoreApplication.translate("MainWindow", u"T(\u03bd)", None))
+        self.AShowButton.setText(QCoreApplication.translate("MainWindow", u"A(\u03bd)", None))
+        self.ExpShowButton.setText(QCoreApplication.translate("MainWindow", u"exp(v)", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
     # retranslateUi
