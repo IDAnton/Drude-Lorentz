@@ -726,6 +726,12 @@
                 <property name="layoutDirection">
                  <enum>Qt::RightToLeft</enum>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                </property>
                 <property name="text">
                  <string>ε’(ν)</string>
                 </property>
@@ -741,6 +747,12 @@
                   <family>Arial</family>
                   <pointsize>12</pointsize>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
                 </property>
                 <property name="text">
                  <string>ε’’(ν)</string>
@@ -758,6 +770,12 @@
                   <pointsize>12</pointsize>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                </property>
                 <property name="text">
                  <string>n(ν)</string>
                 </property>
@@ -773,6 +791,12 @@
                   <family>Arial</family>
                   <pointsize>12</pointsize>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
                 </property>
                 <property name="text">
                  <string>k(ν)</string>
@@ -790,6 +814,12 @@
                   <pointsize>12</pointsize>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                </property>
                 <property name="text">
                  <string>R(ν) </string>
                 </property>
@@ -805,6 +835,12 @@
                   <family>Arial</family>
                   <pointsize>12</pointsize>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
                 </property>
                 <property name="text">
                  <string>φ(ν)</string>
@@ -822,6 +858,12 @@
                   <pointsize>12</pointsize>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                </property>
                 <property name="text">
                  <string>α(v)</string>
                 </property>
@@ -837,6 +879,12 @@
                   <family>Arial</family>
                   <pointsize>12</pointsize>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
                 </property>
                 <property name="text">
                  <string>D(ν)</string>
@@ -857,6 +905,12 @@
                   <pointsize>12</pointsize>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                </property>
                 <property name="text">
                  <string>T(ν)</string>
                 </property>
@@ -873,6 +927,12 @@
                   <pointsize>12</pointsize>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                </property>
                 <property name="text">
                  <string>A(ν)</string>
                 </property>
@@ -888,6 +948,12 @@
                   <family>Arial</family>
                   <pointsize>12</pointsize>
                  </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
                 </property>
                 <property name="text">
                  <string>exp(v)</string>

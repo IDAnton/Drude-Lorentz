@@ -39,7 +39,9 @@ class MplWidget(QtWidgets.QWidget):
         self.A, = self.canvas.ax.plot([], [], label="A")
         self.eps_, = self.canvas.ax.plot([], [],  label="eps''")
         self.eps__, = self.canvas.ax.plot([], [], label="eps''")
-        self.canvas.ax.legend(loc='upper right')
+        for line in self.canvas.ax.get_lines():
+            line.set_linewidth(3)
+        self.canvas.ax.legend(loc='upper right', ncols=5, fontsize=11)
         self.alpha.set_visible(False)
         self.D.set_visible(False)
         self.R_12.set_visible(False)

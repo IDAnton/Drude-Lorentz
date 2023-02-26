@@ -382,6 +382,10 @@ class Ui_MainWindow(object):
         self.ERealShowButton.setFont(font)
         self.ERealShowButton.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.ERealShowButton.setLayoutDirection(Qt.RightToLeft)
+        self.ERealShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.ERealShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.ERealShowButton, 0, 3, 1, 1)
@@ -389,6 +393,10 @@ class Ui_MainWindow(object):
         self.EImgShowButton = QCheckBox(self.centralwidget)
         self.EImgShowButton.setObjectName(u"EImgShowButton")
         self.EImgShowButton.setFont(font)
+        self.EImgShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.EImgShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.EImgShowButton, 0, 2, 1, 1)
@@ -396,6 +404,10 @@ class Ui_MainWindow(object):
         self.NShowButton = QCheckBox(self.centralwidget)
         self.NShowButton.setObjectName(u"NShowButton")
         self.NShowButton.setFont(font)
+        self.NShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.NShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.NShowButton, 0, 1, 1, 1)
@@ -403,6 +415,10 @@ class Ui_MainWindow(object):
         self.KShowButton = QCheckBox(self.centralwidget)
         self.KShowButton.setObjectName(u"KShowButton")
         self.KShowButton.setFont(font)
+        self.KShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.KShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.KShowButton, 0, 0, 1, 1)
@@ -410,6 +426,10 @@ class Ui_MainWindow(object):
         self.RShowButton = QCheckBox(self.centralwidget)
         self.RShowButton.setObjectName(u"RShowButton")
         self.RShowButton.setFont(font)
+        self.RShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.RShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.RShowButton, 1, 3, 1, 1)
@@ -417,6 +437,10 @@ class Ui_MainWindow(object):
         self.PhiShowButton = QCheckBox(self.centralwidget)
         self.PhiShowButton.setObjectName(u"PhiShowButton")
         self.PhiShowButton.setFont(font)
+        self.PhiShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.PhiShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.PhiShowButton, 1, 2, 1, 1)
@@ -424,6 +448,10 @@ class Ui_MainWindow(object):
         self.AlphaShowButton = QCheckBox(self.centralwidget)
         self.AlphaShowButton.setObjectName(u"AlphaShowButton")
         self.AlphaShowButton.setFont(font)
+        self.AlphaShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.AlphaShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.AlphaShowButton, 1, 1, 1, 1)
@@ -431,6 +459,10 @@ class Ui_MainWindow(object):
         self.DShowButton = QCheckBox(self.centralwidget)
         self.DShowButton.setObjectName(u"DShowButton")
         self.DShowButton.setFont(font)
+        self.DShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.DShowButton.setChecked(False)
         self.DShowButton.setAutoRepeat(False)
 
@@ -439,6 +471,10 @@ class Ui_MainWindow(object):
         self.TShowButton = QCheckBox(self.centralwidget)
         self.TShowButton.setObjectName(u"TShowButton")
         self.TShowButton.setFont(font)
+        self.TShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.TShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.TShowButton, 2, 3, 1, 1)
@@ -446,6 +482,10 @@ class Ui_MainWindow(object):
         self.AShowButton = QCheckBox(self.centralwidget)
         self.AShowButton.setObjectName(u"AShowButton")
         self.AShowButton.setFont(font)
+        self.AShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.AShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.AShowButton, 2, 2, 1, 1)
@@ -453,6 +493,10 @@ class Ui_MainWindow(object):
         self.ExpShowButton = QCheckBox(self.centralwidget)
         self.ExpShowButton.setObjectName(u"ExpShowButton")
         self.ExpShowButton.setFont(font)
+        self.ExpShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
         self.ExpShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.ExpShowButton, 2, 1, 1, 1)
