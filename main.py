@@ -39,11 +39,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.FreqLabel.setVisible(False)
 
         # graph show buttons
-        self.ERealShowButton.stateChanged.connect(lambda state: self.graph.N_n_plot.set_visible(state))
+        self.NShowButton.stateChanged.connect(lambda state: self.graph.N_n_plot.set_visible(state))
+        self.NShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.KShowButton.stateChanged.connect(lambda state: self.graph.N_k_plot.set_visible(state))
+        self.KShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.AlphaShowButton.stateChanged.connect(lambda state: self.graph.alpha.set_visible(state))
+        self.AlphaShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.DShowButton.stateChanged.connect(lambda state: self.graph.D.set_visible(state))
+        self.DShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.RShowButton.stateChanged.connect(lambda state: self.graph.R_12.set_visible(state))
+        self.RShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.TShowButton.stateChanged.connect(lambda state: self.graph.T.set_visible(state))
+        self.TShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.PhiShowButton.stateChanged.connect(lambda state: self.graph.phase.set_visible(state))
+        self.PhiShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.AShowButton.stateChanged.connect(lambda state: self.graph.A.set_visible(state))
+        self.AShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.ERealShowButton.stateChanged.connect(lambda state: self.graph.eps_.set_visible(state))
         self.ERealShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
-        self.EImgShowButton.stateChanged.connect(lambda state: self.graph.N_k_plot.set_visible(state))
+        self.EImgShowButton.stateChanged.connect(lambda state: self.graph.eps__.set_visible(state))
         self.EImgShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
-
         self.ignore_input = False
 
     def charge_selection(self):
