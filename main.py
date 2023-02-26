@@ -2,19 +2,27 @@ import sys
 import time
 import numpy as np
 import qdarkstyle
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtGui
 
 from Data import Data, ELECTRON_MASS_GRAMS, MAX_MODES, ATOMIC_MASS_UNITS, ELECTRON_CHARGE
 from utils import get_charge_name_list
 from ui_mainwindow import Ui_MainWindow
 
-from mplwidget import Canvas
+
+try:  # icon
+    from ctypes import windll  # Only exists on Windows.
+    myappid = 'Drude-Lorentz.model.model.1'
+    windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+except ImportError:
+    pass
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
+        self.setWindowTitle("Drude-Lorentz")
+        self.setWindowIcon(QtGui.QIcon("icon.svg"))
 
         self.data = Data()  # initialize all variables
         self.update_data()  # calculate and update graphs
