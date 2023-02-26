@@ -13,7 +13,7 @@ class Data:
                  free_freq_vibration=1100):
         # global params
         self.discretization = discretization
-        self.phase = np.zeros(self.discretization, dtype=np.double)
+        self.phi = np.zeros(self.discretization, dtype=np.double)
         self.T = np.zeros(self.discretization, dtype=np.double)
         self.R_23 = np.zeros(self.discretization, dtype=np.double)
         self.R_12 = np.zeros(self.discretization, dtype=np.double)
@@ -22,6 +22,10 @@ class Data:
         self.A = np.zeros(self.discretization, dtype=np.double)
         self.w_range = w_range
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
+        self.r_12 = np.zeros(self.discretization, dtype=np.complex128)
+        self.r_23 = np.zeros(self.discretization, dtype=np.complex128)
+        self.epsilon_real = np.zeros(self.discretization, dtype=np.double)
+        self.epsilon_im = np.zeros(self.discretization, dtype=np.double)
         N = 1  # ??
         #self.r_12 = (self.N_air - N) / (self.N_air + N)
         #self.r_23 = (N - self.N_media) / (N + self.N_media)
@@ -76,6 +80,12 @@ class Data:
         self.calculate_w_i_plasm()
         self.calculate_epsilon()
         self.real_and_imag_of_sqrt_epsilon()
+        self.adsorbtion_coefficient_calc()
+        self.optical_density_of_film()
+        self.reflection_12_23()
+        self.transmission_of_the_film()
+        self.phase()
+        self.A_coef()
 
     def update_w_range(self):
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
@@ -95,6 +105,7 @@ class Data:
         for i in range(self.bound_number):
             bounded_part += self.w_i_plasm[i]**2 / (self.bound_freq_vibration[i] ** 2 - np.power(self.w, 2) - self.w * 1j * self.bound_gamma[i])
         self.epsilon = self.membrane_epsilon_limit * (epsilon_free + bounded_part)
+        self.epsilon_real, self.epsilon_im = np.real(self.epsilon), np.imag(self.epsilon)
 
     def real_and_imag_of_sqrt_epsilon(self):
         """calculating real part and imag part of epsilon in square, returns imag and real parts of N = sqrt(
@@ -103,21 +114,23 @@ class Data:
         self.N_n, self.N_k = np.real(N), np.imag(N)
 
     def adsorbtion_coefficient_calc(self):  # calculating adsorbtion coef, returns alpha coef
-        self.alpha = 4 * np.pi * self.real_and_imag_of_sqrt_epsilon()[1] * self.bound_freq_vibration
+        self.alpha = 4 * np.pi * self.N_k * self.w
 
     def optical_density_of_film(self):  # calculating optical density of the film, returns D coef
-        self.D = self.adsorbtion_coefficient_calc() * self.thickness
+        self.D = self.alpha * self.thickness
 
     def reflection_12_23(self):  # air-film and film-environment
+        self.r_12 = (self.N_air - np.sqrt(self.epsilon)) / (self.N_air + np.sqrt(self.epsilon))
+        self.r_23 = (np.sqrt(self.epsilon) - self.N_media) / (np.sqrt(self.epsilon) + self.N_media)
         self.R_12 = self.r_12 * np.conjugate(self.r_12)
         self.R_23 = self.r_23 * np.conjugate(self.r_23)
 
     def transmission_of_the_film(self):  # returns transmission
-        delta = 2 * self.thickness * self.n
-        self.T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.bound_freq_vibration))
+        delta = 2 * self.thickness * self.N_n
+        self.T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.w))
 
     def phase(self):  # returns phase_12
-        self.phase = np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
+        self.phi = np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
 
     def A_coef(self):  # optical density of the film with interference
         self.A = -np.log(self.T)
