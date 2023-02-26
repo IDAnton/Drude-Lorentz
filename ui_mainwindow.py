@@ -382,14 +382,14 @@ class Ui_MainWindow(object):
         self.ERealShowButton.setFont(font)
         self.ERealShowButton.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.ERealShowButton.setLayoutDirection(Qt.RightToLeft)
-        self.ERealShowButton.setChecked(True)
+        self.ERealShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.ERealShowButton, 0, 3, 1, 1)
 
         self.EImgShowButton = QCheckBox(self.centralwidget)
         self.EImgShowButton.setObjectName(u"EImgShowButton")
         self.EImgShowButton.setFont(font)
-        self.EImgShowButton.setChecked(True)
+        self.EImgShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.EImgShowButton, 0, 2, 1, 1)
 
@@ -410,49 +410,50 @@ class Ui_MainWindow(object):
         self.RShowButton = QCheckBox(self.centralwidget)
         self.RShowButton.setObjectName(u"RShowButton")
         self.RShowButton.setFont(font)
-        self.RShowButton.setChecked(True)
+        self.RShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.RShowButton, 1, 3, 1, 1)
 
         self.PhiShowButton = QCheckBox(self.centralwidget)
         self.PhiShowButton.setObjectName(u"PhiShowButton")
         self.PhiShowButton.setFont(font)
-        self.PhiShowButton.setChecked(True)
+        self.PhiShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.PhiShowButton, 1, 2, 1, 1)
 
         self.AlphaShowButton = QCheckBox(self.centralwidget)
         self.AlphaShowButton.setObjectName(u"AlphaShowButton")
         self.AlphaShowButton.setFont(font)
-        self.AlphaShowButton.setChecked(True)
+        self.AlphaShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.AlphaShowButton, 1, 1, 1, 1)
 
         self.DShowButton = QCheckBox(self.centralwidget)
         self.DShowButton.setObjectName(u"DShowButton")
         self.DShowButton.setFont(font)
-        self.DShowButton.setChecked(True)
+        self.DShowButton.setChecked(False)
+        self.DShowButton.setAutoRepeat(False)
 
         self.gridLayout.addWidget(self.DShowButton, 1, 0, 1, 1)
 
         self.TShowButton = QCheckBox(self.centralwidget)
         self.TShowButton.setObjectName(u"TShowButton")
         self.TShowButton.setFont(font)
-        self.TShowButton.setChecked(True)
+        self.TShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.TShowButton, 2, 3, 1, 1)
 
         self.AShowButton = QCheckBox(self.centralwidget)
         self.AShowButton.setObjectName(u"AShowButton")
         self.AShowButton.setFont(font)
-        self.AShowButton.setChecked(True)
+        self.AShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.AShowButton, 2, 2, 1, 1)
 
         self.ExpShowButton = QCheckBox(self.centralwidget)
         self.ExpShowButton.setObjectName(u"ExpShowButton")
         self.ExpShowButton.setFont(font)
-        self.ExpShowButton.setChecked(True)
+        self.ExpShowButton.setChecked(False)
 
         self.gridLayout.addWidget(self.ExpShowButton, 2, 1, 1, 1)
 
