@@ -10,8 +10,8 @@ class MplCanvas(Canvas):
     def __init__(self):
         self.fig = Figure()
         self.ax = self.fig.add_subplot(111)
-        # self.ax.set_facecolor("#121e29")
-        # self.fig.set_facecolor("#121e29")
+        self.ax.set_facecolor("#FDFDFDFF")
+        self.fig.set_facecolor("#FDFDFDFF")
         self.fig.tight_layout(pad=0.25, h_pad=0.25, w_pad=0.25)
         Canvas.__init__(self, self.fig)
         Canvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)

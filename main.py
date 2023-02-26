@@ -158,6 +158,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 app = QtWidgets.QApplication(sys.argv)
 app.setStyle('Fusion')
 # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyside6'))
+#fname = QtWidgets.QFileDialog.getOpenFileName()
+with open("style.css", "r") as file:
+    app.setStyleSheet(file.read())
 window = MainWindow()
 window.showMaximized()
 app.exec()

@@ -1,0 +1,13 @@
+QLabel {
+    font-size: 12pt;
+    font-family: Arial, serif;
+}
+
+QWidget{
+    background-color: rgb(253, 253, 253);
+}
+
+QComboBox{
+    selection-background-color: rgba(170, 170, 255, 0.8);
+}
+

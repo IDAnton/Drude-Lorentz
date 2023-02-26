@@ -13,6 +13,12 @@
     <height>659</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -32,6 +38,9 @@
       <property name="sizeConstraint">
        <enum>QLayout::SetMaximumSize</enum>
       </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
       <item>
        <layout class="QHBoxLayout" name="GraphHorizontalLayout">
         <property name="sizeConstraint">
@@ -41,6 +50,9 @@
          <layout class="QVBoxLayout" name="ParamsVerticalLayout">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QFormLayout" name="MainParamsLayout">
