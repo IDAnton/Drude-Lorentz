@@ -761,6 +761,9 @@
                 <property name="text">
                  <string>n(ν)</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="0" column="0">
@@ -773,6 +776,9 @@
                 </property>
                 <property name="text">
                  <string>k(ν)</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -787,6 +793,9 @@
                 <property name="text">
                  <string>R(ν) </string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="1" column="2">
@@ -799,6 +808,9 @@
                 </property>
                 <property name="text">
                  <string>φ(ν)</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -813,6 +825,9 @@
                 <property name="text">
                  <string>α(v)</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="1" column="0">
@@ -825,6 +840,9 @@
                 </property>
                 <property name="text">
                  <string>D(ν)</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -839,6 +857,9 @@
                 <property name="text">
                  <string>T(ν)</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="2" column="2">
@@ -852,6 +873,9 @@
                 <property name="text">
                  <string>A(ν)</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="2" column="1">
@@ -864,6 +888,9 @@
                 </property>
                 <property name="text">
                  <string>exp(v)</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>

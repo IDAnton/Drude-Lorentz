@@ -396,54 +396,63 @@ class Ui_MainWindow(object):
         self.NShowButton = QCheckBox(self.centralwidget)
         self.NShowButton.setObjectName(u"NShowButton")
         self.NShowButton.setFont(font)
+        self.NShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.NShowButton, 0, 1, 1, 1)
 
         self.KShowButton = QCheckBox(self.centralwidget)
         self.KShowButton.setObjectName(u"KShowButton")
         self.KShowButton.setFont(font)
+        self.KShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.KShowButton, 0, 0, 1, 1)
 
         self.RShowButton = QCheckBox(self.centralwidget)
         self.RShowButton.setObjectName(u"RShowButton")
         self.RShowButton.setFont(font)
+        self.RShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.RShowButton, 1, 3, 1, 1)
 
         self.PhiShowButton = QCheckBox(self.centralwidget)
         self.PhiShowButton.setObjectName(u"PhiShowButton")
         self.PhiShowButton.setFont(font)
+        self.PhiShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.PhiShowButton, 1, 2, 1, 1)
 
         self.AlphaShowButton = QCheckBox(self.centralwidget)
         self.AlphaShowButton.setObjectName(u"AlphaShowButton")
         self.AlphaShowButton.setFont(font)
+        self.AlphaShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.AlphaShowButton, 1, 1, 1, 1)
 
         self.DShowButton = QCheckBox(self.centralwidget)
         self.DShowButton.setObjectName(u"DShowButton")
         self.DShowButton.setFont(font)
+        self.DShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.DShowButton, 1, 0, 1, 1)
 
         self.TShowButton = QCheckBox(self.centralwidget)
         self.TShowButton.setObjectName(u"TShowButton")
         self.TShowButton.setFont(font)
+        self.TShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.TShowButton, 2, 3, 1, 1)
 
         self.AShowButton = QCheckBox(self.centralwidget)
         self.AShowButton.setObjectName(u"AShowButton")
         self.AShowButton.setFont(font)
+        self.AShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.AShowButton, 2, 2, 1, 1)
 
         self.ExpShowButton = QCheckBox(self.centralwidget)
         self.ExpShowButton.setObjectName(u"ExpShowButton")
         self.ExpShowButton.setFont(font)
+        self.ExpShowButton.setChecked(True)
 
         self.gridLayout.addWidget(self.ExpShowButton, 2, 1, 1, 1)
 
