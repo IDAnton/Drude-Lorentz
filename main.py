@@ -1,7 +1,6 @@
 import sys
 import time
 import numpy as np
-import qdarkstyle
 from PySide6 import QtWidgets, QtGui
 
 from Data import Data, ELECTRON_MASS_GRAMS, MAX_MODES, ATOMIC_MASS_UNITS, ELECTRON_CHARGE
