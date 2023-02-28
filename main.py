@@ -1,5 +1,4 @@
-import sys
-import time
+import sys, os, time
 import numpy as np
 from PySide6 import QtWidgets, QtGui
 
@@ -7,6 +6,7 @@ from Data import Data, ELECTRON_MASS_GRAMS, MAX_MODES, ATOMIC_MASS_UNITS, ELECTR
 from utils import get_charge_name_list
 from ui_mainwindow import Ui_MainWindow
 
+basedir = os.path.dirname(__file__)
 
 try:  # icon
     from ctypes import windll  # Only exists on Windows.
@@ -21,7 +21,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.setWindowTitle("Drude-Lorentz")
-        self.setWindowIcon(QtGui.QIcon("icon.svg"))
+        self.setWindowIcon(QtGui.QIcon(os.path.join(basedir, "static", "icon.ico")))
 
         self.data = Data()  # initialize all variables
         self.update_data()  # calculate and update graphs
@@ -173,7 +173,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 app = QtWidgets.QApplication(sys.argv)
 app.setStyle('Fusion')
 # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyside6'))
-with open("style.css", "r") as file:
+with open(os.path.join(basedir, "static", "style.css"), "r") as file:
     app.setStyleSheet(file.read())
 window = MainWindow()
 window.showMaximized()

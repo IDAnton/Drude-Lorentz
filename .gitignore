@@ -1,3 +1,5 @@
 ui_mainindow1.py
 venv/
 __pycache__
+build
+dist
