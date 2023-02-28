@@ -34,7 +34,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <layout class="QVBoxLayout" name="MainVerticalLayout" stretch="0,0">
+     <layout class="QVBoxLayout" name="MainVerticalLayout" stretch="0">
       <property name="sizeConstraint">
        <enum>QLayout::SetMaximumSize</enum>
       </property>
@@ -723,7 +723,7 @@
              </widget>
             </item>
             <item>
-             <layout class="QGridLayout" name="gridLayout">
+             <layout class="QGridLayout" name="GraphShowGridLayout">
               <item row="0" column="3">
                <widget class="QCheckBox" name="ERealShowButton">
                 <property name="font">
@@ -987,6 +987,24 @@
            </widget>
           </item>
           <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="ImportButton">
+              <property name="text">
+               <string>Загрузить данные</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ExportButton">
+              <property name="text">
+               <string>Сохранить данные</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -998,13 +1016,6 @@
              </size>
             </property>
            </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </item>
@@ -1018,8 +1029,8 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>250</height>
+            <width>350</width>
+            <height>350</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -1040,19 +1051,6 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </item>

@@ -74,6 +74,7 @@ class Data:
         self.bound_effective_charges[i] = ELECTRON_CHARGE
         self.bound_masses[i] = ATOMIC_MASS_UNITS * 1
         self.bound_N[i] = 1e22
+        self.calculate_w_i_plasm()
 
     def calculate(self):
         self.calculate_w_0_plasm()

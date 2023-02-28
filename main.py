@@ -67,7 +67,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ERealShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.EImgShowButton.stateChanged.connect(lambda state: self.graph.eps__.set_visible(state))
         self.EImgShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+
+        self.ExportButton.clicked.connect(self.export_data)
+
         self.ignore_input = False
+
+    def export_data(self):
+        pass
+        # directory = str(QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory"))
+        # if self.NShowButton.isChecked():
+        #     np.savetxt(f"{directory}/N_n.txt", np.c_[self.data.w, self.data.N_n])
+        # if self.KShowButton.isChecked():
+        #     np.savetxt(f"{directory}/N_k.txt", np.c_[self.data.w, self.data.N_k])
+        # if self.AlphaShowButton.isChecked():
+        #     np.savetxt(f"{directory}/alpha.txt", np.c_[self.data.w, self.data.alpha])
+        # if self.DShowButton.isChecked():
+        #     np.savetxt(f"{directory}/D.txt", np.c_[self.data.w, self.data.D])
 
     def charge_selection(self):
         i = self.ChargeComboBox.currentIndex()
@@ -87,6 +102,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.GammaInput.setValue(self.data.bound_gamma[i])
             self.EffectiveChargeInput.setValue(self.data.bound_effective_charges[i] / ELECTRON_CHARGE)
             self.FreqInput.setValue(self.data.bound_freq_vibration[i])
+            self.PlasmOmegaText.setText(str(round(self.data.w_i_plasm[i], 3)))
         self.ignore_input = False
 
     def update_bound_count(self):
@@ -158,7 +174,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 app = QtWidgets.QApplication(sys.argv)
 app.setStyle('Fusion')
 # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyside6'))
-#fname = QtWidgets.QFileDialog.getOpenFileName()
 with open("style.css", "r") as file:
     app.setStyleSheet(file.read())
 window = MainWindow()

@@ -378,8 +378,8 @@ class Ui_MainWindow(object):
 
         self.GraphShowLayout.addWidget(self.ShowLabel)
 
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setObjectName(u"gridLayout")
+        self.GraphShowGridLayout = QGridLayout()
+        self.GraphShowGridLayout.setObjectName(u"GraphShowGridLayout")
         self.ERealShowButton = QCheckBox(self.centralwidget)
         self.ERealShowButton.setObjectName(u"ERealShowButton")
         self.ERealShowButton.setFont(font)
@@ -391,7 +391,7 @@ class Ui_MainWindow(object):
 "}")
         self.ERealShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.ERealShowButton, 0, 3, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.ERealShowButton, 0, 3, 1, 1)
 
         self.EImgShowButton = QCheckBox(self.centralwidget)
         self.EImgShowButton.setObjectName(u"EImgShowButton")
@@ -402,7 +402,7 @@ class Ui_MainWindow(object):
 "}")
         self.EImgShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.EImgShowButton, 0, 2, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.EImgShowButton, 0, 2, 1, 1)
 
         self.NShowButton = QCheckBox(self.centralwidget)
         self.NShowButton.setObjectName(u"NShowButton")
@@ -413,7 +413,7 @@ class Ui_MainWindow(object):
 "}")
         self.NShowButton.setChecked(True)
 
-        self.gridLayout.addWidget(self.NShowButton, 0, 1, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.NShowButton, 0, 1, 1, 1)
 
         self.KShowButton = QCheckBox(self.centralwidget)
         self.KShowButton.setObjectName(u"KShowButton")
@@ -424,7 +424,7 @@ class Ui_MainWindow(object):
 "}")
         self.KShowButton.setChecked(True)
 
-        self.gridLayout.addWidget(self.KShowButton, 0, 0, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.KShowButton, 0, 0, 1, 1)
 
         self.RShowButton = QCheckBox(self.centralwidget)
         self.RShowButton.setObjectName(u"RShowButton")
@@ -435,7 +435,7 @@ class Ui_MainWindow(object):
 "}")
         self.RShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.RShowButton, 1, 3, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.RShowButton, 1, 3, 1, 1)
 
         self.PhiShowButton = QCheckBox(self.centralwidget)
         self.PhiShowButton.setObjectName(u"PhiShowButton")
@@ -446,7 +446,7 @@ class Ui_MainWindow(object):
 "}")
         self.PhiShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.PhiShowButton, 1, 2, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.PhiShowButton, 1, 2, 1, 1)
 
         self.AlphaShowButton = QCheckBox(self.centralwidget)
         self.AlphaShowButton.setObjectName(u"AlphaShowButton")
@@ -457,7 +457,7 @@ class Ui_MainWindow(object):
 "}")
         self.AlphaShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.AlphaShowButton, 1, 1, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.AlphaShowButton, 1, 1, 1, 1)
 
         self.DShowButton = QCheckBox(self.centralwidget)
         self.DShowButton.setObjectName(u"DShowButton")
@@ -469,7 +469,7 @@ class Ui_MainWindow(object):
         self.DShowButton.setChecked(False)
         self.DShowButton.setAutoRepeat(False)
 
-        self.gridLayout.addWidget(self.DShowButton, 1, 0, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.DShowButton, 1, 0, 1, 1)
 
         self.TShowButton = QCheckBox(self.centralwidget)
         self.TShowButton.setObjectName(u"TShowButton")
@@ -480,7 +480,7 @@ class Ui_MainWindow(object):
 "}")
         self.TShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.TShowButton, 2, 3, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.TShowButton, 2, 3, 1, 1)
 
         self.AShowButton = QCheckBox(self.centralwidget)
         self.AShowButton.setObjectName(u"AShowButton")
@@ -491,7 +491,7 @@ class Ui_MainWindow(object):
 "}")
         self.AShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.AShowButton, 2, 2, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.AShowButton, 2, 2, 1, 1)
 
         self.ExpShowButton = QCheckBox(self.centralwidget)
         self.ExpShowButton.setObjectName(u"ExpShowButton")
@@ -502,10 +502,10 @@ class Ui_MainWindow(object):
 "}")
         self.ExpShowButton.setChecked(False)
 
-        self.gridLayout.addWidget(self.ExpShowButton, 2, 1, 1, 1)
+        self.GraphShowGridLayout.addWidget(self.ExpShowButton, 2, 1, 1, 1)
 
 
-        self.GraphShowLayout.addLayout(self.gridLayout)
+        self.GraphShowLayout.addLayout(self.GraphShowGridLayout)
 
 
         self.ParamsVerticalLayout.addLayout(self.GraphShowLayout)
@@ -517,14 +517,24 @@ class Ui_MainWindow(object):
 
         self.ParamsVerticalLayout.addWidget(self.line_3)
 
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.ImportButton = QPushButton(self.centralwidget)
+        self.ImportButton.setObjectName(u"ImportButton")
+
+        self.horizontalLayout_2.addWidget(self.ImportButton)
+
+        self.ExportButton = QPushButton(self.centralwidget)
+        self.ExportButton.setObjectName(u"ExportButton")
+
+        self.horizontalLayout_2.addWidget(self.ExportButton)
+
+
+        self.ParamsVerticalLayout.addLayout(self.horizontalLayout_2)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.ParamsVerticalLayout.addItem(self.verticalSpacer)
-
-        self.pushButton_2 = QPushButton(self.centralwidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-
-        self.ParamsVerticalLayout.addWidget(self.pushButton_2)
 
 
         self.GraphHorizontalLayout.addLayout(self.ParamsVerticalLayout)
@@ -536,7 +546,7 @@ class Ui_MainWindow(object):
         sizePolicy7.setVerticalStretch(1)
         sizePolicy7.setHeightForWidth(self.graph.sizePolicy().hasHeightForWidth())
         self.graph.setSizePolicy(sizePolicy7)
-        self.graph.setMinimumSize(QSize(200, 250))
+        self.graph.setMinimumSize(QSize(350, 350))
         self.graph.setMaximumSize(QSize(16777215, 16777215))
         self.graph.setAcceptDrops(False)
         self.graph.setLayoutDirection(Qt.RightToLeft)
@@ -546,13 +556,6 @@ class Ui_MainWindow(object):
 
 
         self.MainVerticalLayout.addLayout(self.GraphHorizontalLayout)
-
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy1)
-
-        self.MainVerticalLayout.addWidget(self.pushButton)
 
 
         self.verticalLayout_2.addLayout(self.MainVerticalLayout)
@@ -598,7 +601,7 @@ class Ui_MainWindow(object):
         self.TShowButton.setText(QCoreApplication.translate("MainWindow", u"T(\u03bd)", None))
         self.AShowButton.setText(QCoreApplication.translate("MainWindow", u"A(\u03bd)", None))
         self.ExpShowButton.setText(QCoreApplication.translate("MainWindow", u"exp(v)", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.ImportButton.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
+        self.ExportButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
     # retranslateUi
 

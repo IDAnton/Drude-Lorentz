@@ -11,3 +11,8 @@ QComboBox{
     selection-background-color: rgba(170, 170, 255, 0.8);
 }
 
+
+QPushButton {
+    font-size: 12pt;
+    font-family: Arial, serif;
+}
