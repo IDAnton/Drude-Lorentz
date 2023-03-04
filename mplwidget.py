@@ -39,6 +39,7 @@ class MplWidget(QtWidgets.QWidget):
         self.A, = self.canvas.ax.plot([], [], label="A")
         self.eps_, = self.canvas.ax.plot([], [],  label="eps''")
         self.eps__, = self.canvas.ax.plot([], [], label="eps''")
+        self.experimental, = self.canvas.ax.plot([], [], label="experiment", marker='', linestyle="--")
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
         self.canvas.ax.legend(loc='upper right', ncols=5, fontsize=11)
@@ -50,6 +51,7 @@ class MplWidget(QtWidgets.QWidget):
         self.A.set_visible(False)
         self.eps_.set_visible(False)
         self.eps__.set_visible(False)
+        self.experimental.set_visible(False)
 
     def update_plots(self, data, data_changed=True):
         if data_changed:
@@ -63,6 +65,8 @@ class MplWidget(QtWidgets.QWidget):
             self.A.set_data(data.w, data.A)
             self.eps_.set_data(data.w, data.epsilon_real)
             self.eps__.set_data(data.w, data.epsilon_im)
+            if (data.experiment_x is not None) and (data.experiment_y is not None):
+                self.experimental.set_data(data.experiment_x, data.experiment_y)
         self.canvas.ax.relim(visible_only=True)
         self.canvas.ax.autoscale_view()
         self.canvas.fig.canvas.draw()

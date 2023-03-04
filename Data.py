@@ -66,6 +66,9 @@ class Data:
         self.epsilon = np.zeros(self.discretization, dtype=np.complex128)
         self.N_n = np.zeros(self.discretization, dtype=np.double)  # real part of Refractive index
         self.N_k = np.zeros(self.discretization, dtype=np.double)  # complex part of Refractive index
+        # experimental data
+        self.experiment_x = None
+        self.experiment_y = None
 
     def init_new_charge(self):
         i = self.bound_number

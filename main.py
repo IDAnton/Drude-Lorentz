@@ -47,29 +47,35 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # graph show buttons
         self.NShowButton.stateChanged.connect(lambda state: self.graph.N_n_plot.set_visible(state))
-        self.NShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.KShowButton.stateChanged.connect(lambda state: self.graph.N_k_plot.set_visible(state))
-        self.KShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.AlphaShowButton.stateChanged.connect(lambda state: self.graph.alpha.set_visible(state))
-        self.AlphaShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.DShowButton.stateChanged.connect(lambda state: self.graph.D.set_visible(state))
-        self.DShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.RShowButton.stateChanged.connect(lambda state: self.graph.R_12.set_visible(state))
-        self.RShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.TShowButton.stateChanged.connect(lambda state: self.graph.T.set_visible(state))
-        self.TShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.PhiShowButton.stateChanged.connect(lambda state: self.graph.phase.set_visible(state))
-        self.PhiShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.AShowButton.stateChanged.connect(lambda state: self.graph.A.set_visible(state))
-        self.AShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.ERealShowButton.stateChanged.connect(lambda state: self.graph.eps_.set_visible(state))
-        self.ERealShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
         self.EImgShowButton.stateChanged.connect(lambda state: self.graph.eps__.set_visible(state))
-        self.EImgShowButton.stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+        self.ExpShowButton.stateChanged.connect(lambda state: self.graph.experimental.set_visible(state))
+        for i in range(self.GraphShowGridLayout.count()):
+            self.GraphShowGridLayout.itemAt(i).widget().stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
 
+        # import / export
         self.ExportButton.clicked.connect(self.export_data)
+        self.ImportButton.clicked.connect(self.import_data)
 
         self.ignore_input = False
+
+    def import_data(self):
+        data_file = QtWidgets.QFileDialog.getOpenFileName()
+        try:
+            data = np.loadtxt(data_file[0])
+            self.data.experiment_x, self.data.experiment_y = np.hsplit(data, 2)
+        except ValueError as e:
+            QtWidgets.QMessageBox.critical(None, "Ошибка импорта", f"Файл содержит некорректные данные")
+            return
+        self.ExpShowButton.setChecked(True)
+        self.graph.update_plots(self.data)
 
     def export_data(self):
         pass
