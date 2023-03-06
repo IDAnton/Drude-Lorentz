@@ -155,7 +155,7 @@ class Data:
         self.A = -np.log(self.T)
 
     def angle_cos_calc(self):
-        self.cos_angle = np.sqrt(1 - np.power((self.N_air * np.conjugate(self.N_air) / self.N * np.conjugate(self.N)), 1) * np.power(np.sin(self.angle), 2))
+        self.cos_angle = np.sqrt(1 - np.power((self.N_air * np.conjugate(self.N_air) / self.N * np.conjugate(self.N)), 1) * np.power(np.sin(self.angle), 1))
 
     def rTE_calc(self):
         self.rTE = (self.N_air * np.cos(self.angle) - self.N * self.cos_angle) / (self.N_air * np.cos(self.angle) + self.N * self.cos_angle)
