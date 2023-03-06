@@ -10,7 +10,7 @@ MAX_MODES = 10
 class Data:
     def __init__(self, w_range=(10, 4500), discretization=1000, free_N=1e18, free_mass=ELECTRON_MASS_GRAMS,
                  free_gamma=1, membrane_epsilon_limit=20, bound_number=0, thickness=100, N_media=1, free_charge=ELECTRON_CHARGE,
-                 free_freq_vibration=1100):
+                 free_freq_vibration=1100, angle_degrees=45):
         # global params
         self.discretization = discretization
         self.phi = np.zeros(self.discretization, dtype=np.double)
@@ -26,6 +26,14 @@ class Data:
         self.r_23 = np.zeros(self.discretization, dtype=np.complex128)
         self.epsilon_real = np.zeros(self.discretization, dtype=np.double)
         self.epsilon_im = np.zeros(self.discretization, dtype=np.double)
+        self.cos_angle = np.zeros(self.discretization, dtype=np.double)
+        self.rTE = np.zeros(self.discretization, dtype=np.complex128)
+        self.rTM = np.zeros(self.discretization, dtype=np.complex128)
+        self.RTE = np.zeros(self.discretization, dtype=np.double)
+        self.RTM = np.zeros(self.discretization, dtype=np.double)
+        self.TE_phase = np.zeros(self.discretization, dtype=np.double)
+        self.TM_phase = np.zeros(self.discretization, dtype=np.double)
+        self.RNP = np.zeros(self.discretization, dtype=np.double)
         N = 1  # ??
         #self.r_12 = (self.N_air - N) / (self.N_air + N)
         #self.r_23 = (N - self.N_media) / (N + self.N_media)
@@ -52,6 +60,7 @@ class Data:
         N_air = 1
         self.N_air = N_air # ??
         self.N_media_from_w = None
+        self.angle = angle_degrees * np.pi / 180
 
         # modes params:
         self.bound_number = bound_number
@@ -66,6 +75,7 @@ class Data:
         self.epsilon = np.zeros(self.discretization, dtype=np.complex128)
         self.N_n = np.zeros(self.discretization, dtype=np.double)  # real part of Refractive index
         self.N_k = np.zeros(self.discretization, dtype=np.double)  # complex part of Refractive index
+        self.N = np.zeros(self.discretization, dtype=np.complex128)
         # experimental data
         self.experiment_x = None
         self.experiment_y = None
@@ -90,6 +100,11 @@ class Data:
         self.transmission_of_the_film()
         self.phase()
         self.A_coef()
+        self.angle_cos_calc()
+        self.rTE_calc()
+        self.rTM_calc()
+        self.phases_TE_TM()
+        self.RNP_calc()
 
     def update_w_range(self):
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
@@ -114,8 +129,8 @@ class Data:
     def real_and_imag_of_sqrt_epsilon(self):
         """calculating real part and imag part of epsilon in square, returns imag and real parts of N = sqrt(
         epsilon) """
-        N = np.sqrt(self.epsilon)
-        self.N_n, self.N_k = np.real(N), np.imag(N)
+        self.N = np.sqrt(self.epsilon)
+        self.N_n, self.N_k = np.real(self.N), np.imag(self.N)
 
     def adsorbtion_coefficient_calc(self):  # calculating adsorbtion coef, returns alpha coef
         self.alpha = 4 * np.pi * self.N_k * self.w
@@ -138,3 +153,21 @@ class Data:
 
     def A_coef(self):  # optical density of the film with interference
         self.A = -np.log(self.T)
+
+    def angle_cos_calc(self):
+        self.cos_angle = np.sqrt(1 - np.power((self.N_air * np.conjugate(self.N_air) / self.N * np.conjugate(self.N)), 1) * np.power(np.sin(self.angle), 2))
+
+    def rTE_calc(self):
+        self.rTE = (self.N_air * np.cos(self.angle) - self.N * self.cos_angle) / (self.N_air * np.cos(self.angle) + self.N * self.cos_angle)
+        self.RTE = self.rTE * np.conjugate(self.rTE)
+
+    def rTM_calc(self):
+        self.rTM = (self.N_air * self.cos_angle - self.N * np.cos(self.angle)) / (self.N_air * self.cos_angle + self.N * np.cos(self.angle))
+        self.RTM = self.rTM * np.conjugate(self.rTM)
+
+    def phases_TE_TM(self):
+        self.TE_phase = np.arccos(np.real(self.rTE / np.sqrt(self.RTE)))
+        self.TM_phase = np.arccos(np.real(self.rTM / np.sqrt(self.RTM)))
+
+    def RNP_calc(self):
+        self.RNP = (self.RTE + self.RTM) / 2
