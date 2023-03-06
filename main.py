@@ -81,8 +81,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # angel
         self.AngelSlider.valueChanged.connect(lambda value: self.AngelSpinBox.setValue(value))
         self.AngelSpinBox.valueChanged.connect(lambda value: self.AngelSlider.setValue(value))
+        self.AngelSpinBox.valueChanged.connect(self.update_angel)
 
         self.ignore_input = False
+
+    def update_angel(self, value):
+        self.data.angle = value * np.pi / 180
+        self.update_data()
 
     def page1pushed(self):
         self.ParametrsPages.setCurrentWidget(self.Page1)
