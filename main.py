@@ -28,10 +28,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.sync_defaults()  # set default values to ui
 
         # Pages
-        self.Page1Button.clicked.connect(lambda: self.ParametrsPages.setCurrentWidget(self.Page1))
-        self.Page1Button.clicked.connect(lambda: self.GraphsPages.setCurrentWidget(self.graph))
-        self.Page2Button.clicked.connect(lambda: self.ParametrsPages.setCurrentWidget(self.Page2))
-        self.Page2Button.clicked.connect(lambda: self.GraphsPages.setCurrentWidget(self.graph2))
+        self.Page1Button.clicked.connect(self.page1pushed)
+        self.Page2Button.clicked.connect(self.page2pushed)
+        #self.Page2Button.clicked.connect(self.page2pushed)
 
         # global params
         self.EpsilonLimitInput.valueChanged.connect(self.update_epsilon)
@@ -79,7 +78,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ExportButton.clicked.connect(self.export_data)
         self.ImportButton.clicked.connect(self.import_data)
 
+        # angel
+        self.AngelSlider.valueChanged.connect(lambda value: self.AngelSpinBox.setValue(value))
+        self.AngelSpinBox.valueChanged.connect(lambda value: self.AngelSlider.setValue(value))
+
         self.ignore_input = False
+
+    def page1pushed(self):
+        self.ParametrsPages.setCurrentWidget(self.Page1)
+        self.GraphsPages.setCurrentWidget(self.graph)
+        self.Page1Button.setStyleSheet("QPushButton#Page1Button {background-color: rgb(170, 170, 255)}")
+        self.Page2Button.setStyleSheet("QPushButton#Page2Button {background-color: rgb('FBFBFBFF')}")
+
+    def page2pushed(self):
+        self.ParametrsPages.setCurrentWidget(self.Page2)
+        self.GraphsPages.setCurrentWidget(self.graph2)
+        self.Page2Button.setStyleSheet("QPushButton#Page2Button {background-color: rgb(170, 170, 255)}")
+        self.Page1Button.setStyleSheet("QPushButton#Page1Button {background-color: rgb('FBFBFBFF')}")
 
     def import_data(self):
         data_file = QtWidgets.QFileDialog.getOpenFileName()
@@ -89,6 +104,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except ValueError as e:
             QtWidgets.QMessageBox.critical(None, "Ошибка импорта", f"Файл содержит некорректные данные")
             return
+        self.ExpShowButton.setEnabled(True)
         self.ExpShowButton.setChecked(True)
         self.graph.update_plots(self.data)
 

@@ -42,7 +42,7 @@ class MplWidget(QtWidgets.QWidget):
         self.experimental, = self.canvas.ax.plot([], [], label="experiment")
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
-        self.canvas.ax.legend(loc='upper right', ncols=4, fontsize=12)
+        self.canvas.ax.legend(loc='upper right', ncols=2, fontsize=12)
         self.alpha.set_visible(False)
         self.D.set_visible(False)
         self.R_12.set_visible(False)
@@ -80,4 +80,4 @@ class MplWidget(QtWidgets.QWidget):
         for line in self.canvas.ax.get_lines():
             if line._visible:
                 labels.append(line)
-        self.canvas.ax.legend(handles=labels, loc='upper right', ncols=4, fontsize=12)
+        self.canvas.ax.legend(handles=labels, loc='upper right', ncols=2, fontsize=12)

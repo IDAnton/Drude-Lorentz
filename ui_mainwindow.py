@@ -18,8 +18,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
     QDoubleSpinBox, QFormLayout, QFrame, QGridLayout,
     QHBoxLayout, QLabel, QLayout, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
-    QStackedWidget, QTabWidget, QVBoxLayout, QWidget)
+    QPushButton, QSizePolicy, QSlider, QSpacerItem,
+    QSpinBox, QStackedWidget, QTabWidget, QVBoxLayout,
+    QWidget)
 
 from mplwidget import MplWidget
 from mplwidget2 import mplwidget2
@@ -510,6 +511,7 @@ class Ui_MainWindow(object):
 
         self.ExpShowButton = QCheckBox(self.Page1)
         self.ExpShowButton.setObjectName(u"ExpShowButton")
+        self.ExpShowButton.setEnabled(False)
         self.ExpShowButton.setFont(font)
         self.ExpShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
 "     width: 20px;\n"
@@ -556,11 +558,57 @@ class Ui_MainWindow(object):
         self.Page2.setObjectName(u"Page2")
         self.layoutWidget = QWidget(self.Page2)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(0, 0, 351, 115))
+        self.layoutWidget.setGeometry(QRect(0, 0, 351, 158))
         self.GraphShowLayout_2 = QVBoxLayout(self.layoutWidget)
         self.GraphShowLayout_2.setSpacing(6)
         self.GraphShowLayout_2.setObjectName(u"GraphShowLayout_2")
         self.GraphShowLayout_2.setContentsMargins(0, 0, 6, 0)
+        self.line_5 = QFrame(self.layoutWidget)
+        self.line_5.setObjectName(u"line_5")
+        self.line_5.setFrameShape(QFrame.HLine)
+        self.line_5.setFrameShadow(QFrame.Sunken)
+
+        self.GraphShowLayout_2.addWidget(self.line_5)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.AngelSpinBox = QDoubleSpinBox(self.layoutWidget)
+        self.AngelSpinBox.setObjectName(u"AngelSpinBox")
+        self.AngelSpinBox.setLayoutDirection(Qt.LeftToRight)
+        self.AngelSpinBox.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.AngelSpinBox.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.AngelSpinBox.setMaximum(90.000000000000000)
+
+        self.horizontalLayout_3.addWidget(self.AngelSpinBox)
+
+        self.AngelSlider = QSlider(self.layoutWidget)
+        self.AngelSlider.setObjectName(u"AngelSlider")
+        self.AngelSlider.setLayoutDirection(Qt.LeftToRight)
+        self.AngelSlider.setAutoFillBackground(False)
+        self.AngelSlider.setMaximum(90)
+        self.AngelSlider.setPageStep(5)
+        self.AngelSlider.setTracking(True)
+        self.AngelSlider.setOrientation(Qt.Horizontal)
+        self.AngelSlider.setTickPosition(QSlider.NoTicks)
+        self.AngelSlider.setTickInterval(1)
+
+        self.horizontalLayout_3.addWidget(self.AngelSlider)
+
+        self.AngelLabel = QLabel(self.layoutWidget)
+        self.AngelLabel.setObjectName(u"AngelLabel")
+
+        self.horizontalLayout_3.addWidget(self.AngelLabel)
+
+
+        self.GraphShowLayout_2.addLayout(self.horizontalLayout_3)
+
+        self.line_6 = QFrame(self.layoutWidget)
+        self.line_6.setObjectName(u"line_6")
+        self.line_6.setFrameShape(QFrame.HLine)
+        self.line_6.setFrameShadow(QFrame.Sunken)
+
+        self.GraphShowLayout_2.addWidget(self.line_6)
+
         self.ShowLabel_2 = QLabel(self.layoutWidget)
         self.ShowLabel_2.setObjectName(u"ShowLabel_2")
         self.ShowLabel_2.setFont(font)
@@ -646,16 +694,23 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.ParametrsPages, 1, 0, 1, 1)
 
         self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setSpacing(6)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setSizeConstraint(QLayout.SetMinimumSize)
-        self.horizontalLayout_5.setContentsMargins(-1, 17, -1, -1)
+        self.horizontalLayout_5.setContentsMargins(-1, 20, -1, -1)
         self.Page2Button = QPushButton(self.centralwidget)
         self.Page2Button.setObjectName(u"Page2Button")
+        self.Page2Button.setCheckable(False)
 
         self.horizontalLayout_5.addWidget(self.Page2Button)
 
         self.Page1Button = QPushButton(self.centralwidget)
         self.Page1Button.setObjectName(u"Page1Button")
+        self.Page1Button.setStyleSheet(u"QPushButton#Page1Button {background-color: rgb(170, 170, 255)}")
+        self.Page1Button.setCheckable(False)
+        self.Page1Button.setChecked(False)
+        self.Page1Button.setAutoDefault(False)
+        self.Page1Button.setFlat(False)
 
         self.horizontalLayout_5.addWidget(self.Page1Button)
 
@@ -699,6 +754,7 @@ class Ui_MainWindow(object):
 
         self.ParametrsPages.setCurrentIndex(0)
         self.ChargeComboBox.setCurrentIndex(0)
+        self.Page1Button.setDefault(False)
         self.GraphsPages.setCurrentIndex(0)
 
 
@@ -738,6 +794,7 @@ class Ui_MainWindow(object):
         self.ExpShowButton.setText(QCoreApplication.translate("MainWindow", u"exp(v)", None))
         self.ImportButton.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
         self.ExportButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
+        self.AngelLabel.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0433\u043e\u043b \u043f\u0430\u0434\u0435\u043d\u0438\u044f \u03b8", None))
         self.ShowLabel_2.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043e\u0431\u0440\u0430\u0436\u0430\u0435\u043c\u044b\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u0438", None))
         self.RTE_waveShowButton.setText(QCoreApplication.translate("MainWindow", u"RTE", None))
         self.RTM_waveButton.setText(QCoreApplication.translate("MainWindow", u"RTM", None))

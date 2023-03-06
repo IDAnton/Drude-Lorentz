@@ -8,7 +8,7 @@ QWidget{
 }
 
 QComboBox{
-    selection-background-color: rgba(170, 170, 255, 0.8);
+    selection-background-color: rgb(170, 170, 255);
 }
 
 
@@ -16,3 +16,24 @@ QPushButton {
     font-size: 12pt;
     font-family: Arial, serif;
 }
+
+QPushButton:hover {
+    background-color: rgb(209, 209, 239);
+}
+
+QDoubleSpinBox{
+    font-size: 12pt;
+    font-family: Arial, serif;
+}
+
+QSlider {
+    height: 80px;
+}
+
+QSlider:handle:horizontal {
+    background: rgb(170, 170, 255);
+    border: 10px solid rgb(170, 170, 255);
+    width: 80px;
+    height: 80px;
+}
+
