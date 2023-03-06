@@ -36,7 +36,7 @@ class mplwidget2(QtWidgets.QWidget):
         self.RNP_wave, = self.canvas.ax.plot([], [], label="RNP")
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
-        self.canvas.ax.legend(loc='upper right', ncols=4, fontsize=11)
+        self.canvas.ax.legend(loc='upper right', ncols=3, fontsize=11)
         self.RTE_wave.set_visible(True)
         self.RTM_wave.set_visible(True)
         self.TE_phase_12.set_visible(False)
