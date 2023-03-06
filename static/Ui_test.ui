@@ -72,6 +72,9 @@
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
           <widget class="QWidget" name="Page1" native="true">
            <layout class="QVBoxLayout" name="ParamsVerticalLayout">
             <property name="sizeConstraint">
@@ -1045,7 +1048,182 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="Page2"/>
+          <widget class="QWidget" name="Page2">
+           <widget class="QWidget" name="layoutWidget">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>351</width>
+              <height>115</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="GraphShowLayout_2">
+             <property name="spacing">
+              <number>6</number>
+             </property>
+             <property name="rightMargin">
+              <number>6</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="ShowLabel_2">
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Отображаемые графики</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QGridLayout" name="GraphShowGridLayout_2">
+               <item row="0" column="2">
+                <widget class="QCheckBox" name="RTE_waveShowButton">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="contextMenuPolicy">
+                  <enum>Qt::DefaultContextMenu</enum>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::RightToLeft</enum>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>RTE</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QCheckBox" name="RTM_waveButton">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>RTM</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QCheckBox" name="RNP_waveShowButton">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>RNP</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="TM_phaseShowButton">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>TM_phase</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QCheckBox" name="TE_phaseShowButton">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>TE_phase</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="Line" name="line_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </widget>
          </widget>
         </item>
         <item row="0" column="0">

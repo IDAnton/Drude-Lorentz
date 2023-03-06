@@ -554,6 +554,93 @@ class Ui_MainWindow(object):
         self.ParametrsPages.addWidget(self.Page1)
         self.Page2 = QWidget()
         self.Page2.setObjectName(u"Page2")
+        self.layoutWidget = QWidget(self.Page2)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(0, 0, 351, 115))
+        self.GraphShowLayout_2 = QVBoxLayout(self.layoutWidget)
+        self.GraphShowLayout_2.setSpacing(6)
+        self.GraphShowLayout_2.setObjectName(u"GraphShowLayout_2")
+        self.GraphShowLayout_2.setContentsMargins(0, 0, 6, 0)
+        self.ShowLabel_2 = QLabel(self.layoutWidget)
+        self.ShowLabel_2.setObjectName(u"ShowLabel_2")
+        self.ShowLabel_2.setFont(font)
+        self.ShowLabel_2.setAlignment(Qt.AlignCenter)
+
+        self.GraphShowLayout_2.addWidget(self.ShowLabel_2)
+
+        self.GraphShowGridLayout_2 = QGridLayout()
+        self.GraphShowGridLayout_2.setObjectName(u"GraphShowGridLayout_2")
+        self.RTE_waveShowButton = QCheckBox(self.layoutWidget)
+        self.RTE_waveShowButton.setObjectName(u"RTE_waveShowButton")
+        self.RTE_waveShowButton.setFont(font)
+        self.RTE_waveShowButton.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.RTE_waveShowButton.setLayoutDirection(Qt.RightToLeft)
+        self.RTE_waveShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
+        self.RTE_waveShowButton.setChecked(True)
+
+        self.GraphShowGridLayout_2.addWidget(self.RTE_waveShowButton, 0, 2, 1, 1)
+
+        self.RTM_waveButton = QCheckBox(self.layoutWidget)
+        self.RTM_waveButton.setObjectName(u"RTM_waveButton")
+        self.RTM_waveButton.setFont(font)
+        self.RTM_waveButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
+        self.RTM_waveButton.setChecked(True)
+
+        self.GraphShowGridLayout_2.addWidget(self.RTM_waveButton, 0, 1, 1, 1)
+
+        self.RNP_waveShowButton = QCheckBox(self.layoutWidget)
+        self.RNP_waveShowButton.setObjectName(u"RNP_waveShowButton")
+        self.RNP_waveShowButton.setFont(font)
+        self.RNP_waveShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
+        self.RNP_waveShowButton.setChecked(False)
+
+        self.GraphShowGridLayout_2.addWidget(self.RNP_waveShowButton, 0, 0, 1, 1)
+
+        self.TM_phaseShowButton = QCheckBox(self.layoutWidget)
+        self.TM_phaseShowButton.setObjectName(u"TM_phaseShowButton")
+        self.TM_phaseShowButton.setFont(font)
+        self.TM_phaseShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
+        self.TM_phaseShowButton.setChecked(False)
+
+        self.GraphShowGridLayout_2.addWidget(self.TM_phaseShowButton, 1, 0, 1, 1)
+
+        self.TE_phaseShowButton = QCheckBox(self.layoutWidget)
+        self.TE_phaseShowButton.setObjectName(u"TE_phaseShowButton")
+        self.TE_phaseShowButton.setFont(font)
+        self.TE_phaseShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
+        self.TE_phaseShowButton.setChecked(False)
+
+        self.GraphShowGridLayout_2.addWidget(self.TE_phaseShowButton, 1, 1, 1, 1)
+
+
+        self.GraphShowLayout_2.addLayout(self.GraphShowGridLayout_2)
+
+        self.line_4 = QFrame(self.layoutWidget)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setFrameShape(QFrame.HLine)
+        self.line_4.setFrameShadow(QFrame.Sunken)
+
+        self.GraphShowLayout_2.addWidget(self.line_4)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.GraphShowLayout_2.addItem(self.verticalSpacer_2)
+
         self.ParametrsPages.addWidget(self.Page2)
 
         self.gridLayout.addWidget(self.ParametrsPages, 1, 0, 1, 1)
@@ -610,6 +697,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.ParametrsPages.setCurrentIndex(0)
         self.ChargeComboBox.setCurrentIndex(0)
         self.GraphsPages.setCurrentIndex(0)
 
@@ -650,6 +738,12 @@ class Ui_MainWindow(object):
         self.ExpShowButton.setText(QCoreApplication.translate("MainWindow", u"exp(v)", None))
         self.ImportButton.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
         self.ExportButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
+        self.ShowLabel_2.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043e\u0431\u0440\u0430\u0436\u0430\u0435\u043c\u044b\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u0438", None))
+        self.RTE_waveShowButton.setText(QCoreApplication.translate("MainWindow", u"RTE", None))
+        self.RTM_waveButton.setText(QCoreApplication.translate("MainWindow", u"RTM", None))
+        self.RNP_waveShowButton.setText(QCoreApplication.translate("MainWindow", u"RNP", None))
+        self.TM_phaseShowButton.setText(QCoreApplication.translate("MainWindow", u"TM_phase", None))
+        self.TE_phaseShowButton.setText(QCoreApplication.translate("MainWindow", u"TE_phase", None))
         self.Page2Button.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435", None))
         self.Page1Button.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0441\u043d\u043e\u0432\u043d\u044b\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u0438", None))
     # retranslateUi

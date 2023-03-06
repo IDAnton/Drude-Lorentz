@@ -37,8 +37,8 @@ class mplwidget2(QtWidgets.QWidget):
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
         self.canvas.ax.legend(loc='upper right', ncols=4, fontsize=11)
-        self.RTE_wave.set_visible(False)
-        self.RTM_wave.set_visible(False)
+        self.RTE_wave.set_visible(True)
+        self.RTM_wave.set_visible(True)
         self.TE_phase_12.set_visible(False)
         self.TM_phase_12.set_visible(False)
         self.RNP_wave.set_visible(False)

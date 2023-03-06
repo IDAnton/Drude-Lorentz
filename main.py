@@ -52,7 +52,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.FreqLabel.setVisible(False)
 
         # graph show buttons
-        self.NShowButton.stateChanged.connect(lambda state: self.graph.N_n_plot.set_visible(state))
+        self.NShowButton.stateChanged.connect(lambda state: self.graph.N_n_plot.set_visible(state))  # first page
         self.KShowButton.stateChanged.connect(lambda state: self.graph.N_k_plot.set_visible(state))
         self.AlphaShowButton.stateChanged.connect(lambda state: self.graph.alpha.set_visible(state))
         self.DShowButton.stateChanged.connect(lambda state: self.graph.D.set_visible(state))
@@ -63,8 +63,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ERealShowButton.stateChanged.connect(lambda state: self.graph.eps_.set_visible(state))
         self.EImgShowButton.stateChanged.connect(lambda state: self.graph.eps__.set_visible(state))
         self.ExpShowButton.stateChanged.connect(lambda state: self.graph.experimental.set_visible(state))
+        self.RTE_waveShowButton.stateChanged.connect(lambda state: self.graph2.RTE_wave.set_visible(state))  # second page
+        self.RTM_waveButton.stateChanged.connect(lambda state: self.graph2.RTM_wave.set_visible(state))
+        self.TE_phaseShowButton.stateChanged.connect(lambda state: self.graph2.TE_phase_12.set_visible(state))
+        self.TM_phaseShowButton.stateChanged.connect(lambda state: self.graph2.TM_phase_12.set_visible(state))
+        self.RNP_waveShowButton.stateChanged.connect(lambda state: self.graph2.RNP_wave.set_visible(state))
         for i in range(self.GraphShowGridLayout.count()):
-            self.GraphShowGridLayout.itemAt(i).widget().stateChanged.connect(lambda: self.graph.update_plots(self.data, data_changed=False))
+            self.GraphShowGridLayout.itemAt(i).widget().stateChanged.connect(
+                lambda: self.graph.update_plots(self.data, data_changed=False))
+        for i in range(self.GraphShowGridLayout_2.count()):
+            self.GraphShowGridLayout_2.itemAt(i).widget().stateChanged.connect(
+                lambda: self.graph2.update_plots(self.data, data_changed=False))
 
         # import / export
         self.ExportButton.clicked.connect(self.export_data)
