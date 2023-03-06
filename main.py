@@ -27,6 +27,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.update_data()  # calculate and update graphs
         self.sync_defaults()  # set default values to ui
 
+        # Pages
+        self.Page1Button.clicked.connect(lambda: self.ParametrsPages.setCurrentWidget(self.Page1))
+        self.Page1Button.clicked.connect(lambda: self.GraphsPages.setCurrentWidget(self.graph))
+        self.Page2Button.clicked.connect(lambda: self.ParametrsPages.setCurrentWidget(self.Page2))
+        self.Page2Button.clicked.connect(lambda: self.GraphsPages.setCurrentWidget(self.graph2))
+
         # global params
         self.EpsilonLimitInput.valueChanged.connect(self.update_epsilon)
         self.W1_RangeInput.valueChanged.connect(self.update_w_range)
