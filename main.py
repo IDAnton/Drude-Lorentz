@@ -164,6 +164,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         start_time = time.time()
         self.data.calculate()
         self.graph.update_plots(self.data)
+        self.graph2.update_plots(self.data)
         #print("--- %s seconds ---" % (time.time() - start_time))
 
     def sync_defaults(self):
