@@ -70,10 +70,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.RNP_waveShowButton.stateChanged.connect(lambda state: self.graph2.RNP_wave.set_visible(state))
         for i in range(self.GraphShowGridLayout.count()):
             self.GraphShowGridLayout.itemAt(i).widget().stateChanged.connect(
-                lambda: self.graph.update_plots(self.data, data_changed=False))
+                lambda: self.graph.update_plots(self.data, data_changed=False, redraw_legend=True))
         for i in range(self.GraphShowGridLayout_2.count()):
             self.GraphShowGridLayout_2.itemAt(i).widget().stateChanged.connect(
-                lambda: self.graph2.update_plots(self.data, data_changed=False))
+                lambda: self.graph2.update_plots(self.data, data_changed=False, redraw_legend=True))
 
         # import / export
         self.ExportButton.clicked.connect(self.export_data)

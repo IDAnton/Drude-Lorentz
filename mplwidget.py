@@ -37,12 +37,12 @@ class MplWidget(QtWidgets.QWidget):
         self.T, = self.canvas.ax.plot([], [], label="T")
         self.phase, = self.canvas.ax.plot([], [], label="phi")
         self.A, = self.canvas.ax.plot([], [], label="A")
-        self.eps_, = self.canvas.ax.plot([], [],  label="eps''")
+        self.eps_, = self.canvas.ax.plot([], [], label="eps''")
         self.eps__, = self.canvas.ax.plot([], [], label="eps''")
         self.experimental, = self.canvas.ax.plot([], [], label="experiment")
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
-        self.canvas.ax.legend(loc='upper right', ncols=4, fontsize=11)
+        self.canvas.ax.legend(loc='upper right', ncols=4, fontsize=12)
         self.alpha.set_visible(False)
         self.D.set_visible(False)
         self.R_12.set_visible(False)
@@ -52,8 +52,9 @@ class MplWidget(QtWidgets.QWidget):
         self.eps_.set_visible(False)
         self.eps__.set_visible(False)
         self.experimental.set_visible(False)
+        self.redraw_legends()  # show only visible legends
 
-    def update_plots(self, data, data_changed=True):
+    def update_plots(self, data, data_changed=True, redraw_legend=False):
         if data_changed:
             self.N_n_plot.set_data(data.w, data.N_n)
             self.N_k_plot.set_data(data.w, data.N_k)
@@ -67,7 +68,16 @@ class MplWidget(QtWidgets.QWidget):
             self.eps__.set_data(data.w, data.epsilon_im)
             if (data.experiment_x is not None) and (data.experiment_y is not None):
                 self.experimental.set_data(data.experiment_x, data.experiment_y)
+        if redraw_legend:
+            self.redraw_legends()
         self.canvas.ax.relim(visible_only=True)
         self.canvas.ax.autoscale_view()
         self.canvas.fig.canvas.draw()
         self.canvas.fig.canvas.flush_events()
+
+    def redraw_legends(self):
+        labels = []
+        for line in self.canvas.ax.get_lines():
+            if line._visible:
+                labels.append(line)
+        self.canvas.ax.legend(handles=labels, loc='upper right', ncols=4, fontsize=12)

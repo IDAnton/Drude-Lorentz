@@ -36,22 +36,31 @@ class mplwidget2(QtWidgets.QWidget):
         self.RNP_wave, = self.canvas.ax.plot([], [], label="RNP")
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
-        self.canvas.ax.legend(loc='upper right', ncols=3, fontsize=11)
+        self.canvas.ax.legend(loc='upper right', ncols=3, fontsize=12)
         self.RTE_wave.set_visible(True)
         self.RTM_wave.set_visible(True)
         self.TE_phase_12.set_visible(False)
         self.TM_phase_12.set_visible(False)
         self.RNP_wave.set_visible(False)
+        self.redraw_legends()  # show only visible legends
 
-    def update_plots(self, data, data_changed=True):
+    def update_plots(self, data, data_changed=True, redraw_legend=False):
         if data_changed:
             self.RTE_wave.set_data(data.w, data.RTE)
             self.RTM_wave.set_data(data.w, data.RTM)
             self.TE_phase_12.set_data(data.w, data.TE_phase)
             self.TM_phase_12.set_data(data.w, data.TM_phase)
             self.RNP_wave.set_data(data.w, data.RNP)
-            pass
+        if redraw_legend:
+            self.redraw_legends()
         self.canvas.ax.relim(visible_only=True)
         self.canvas.ax.autoscale_view()
         self.canvas.fig.canvas.draw()
         self.canvas.fig.canvas.flush_events()
+
+    def redraw_legends(self):
+        labels = []
+        for line in self.canvas.ax.get_lines():
+            if line._visible:
+                labels.append(line)
+        self.canvas.ax.legend(handles=labels, loc='upper right', ncols=4, fontsize=12)
