@@ -46,6 +46,95 @@
         <property name="sizeConstraint">
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <property name="topMargin">
+           <number>20</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="Page2Button">
+            <property name="text">
+             <string>Дополнительные</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="Page1Button">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#Page1Button {background-color: rgb(170, 170, 255)}</string>
+            </property>
+            <property name="text">
+             <string>Основные графики</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+            <property name="default">
+             <bool>false</bool>
+            </property>
+            <property name="flat">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="2" rowspan="2">
+         <widget class="QStackedWidget" name="GraphsPages">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>1</width>
+            <height>1</height>
+           </size>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="MplWidget" name="graph">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>550</width>
+             <height>550</height>
+            </size>
+           </property>
+          </widget>
+          <widget class="mplwidget2" name="graph2">
+           <property name="minimumSize">
+            <size>
+             <width>550</width>
+             <height>550</height>
+            </size>
+           </property>
+          </widget>
+         </widget>
+        </item>
         <item row="1" column="0">
          <widget class="QStackedWidget" name="ParametrsPages">
           <property name="sizePolicy">
@@ -1019,7 +1108,7 @@
              </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <layout class="QHBoxLayout" name="ExportLayout">
               <item>
                <widget class="QPushButton" name="ImportButton">
                 <property name="text">
@@ -1058,7 +1147,7 @@
               <x>0</x>
               <y>0</y>
               <width>351</width>
-              <height>158</height>
+              <height>174</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="GraphShowLayout_2">
@@ -1155,6 +1244,9 @@
              </item>
              <item>
               <layout class="QGridLayout" name="GraphShowGridLayout_2">
+               <property name="verticalSpacing">
+                <number>6</number>
+               </property>
                <item row="0" column="2">
                 <widget class="QCheckBox" name="RTE_waveShowButton">
                  <property name="font">
@@ -1227,29 +1319,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QCheckBox" name="TM_phaseShowButton">
-                 <property name="font">
-                  <font>
-                   <family>Arial</family>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QCheckBox::indicator {
-     width: 20px;
-     height: 20px;
-}</string>
-                 </property>
-                 <property name="text">
-                  <string>TM_phase</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
+               <item row="1" column="2">
                 <widget class="QCheckBox" name="TE_phaseShowButton">
                  <property name="font">
                   <font>
@@ -1271,6 +1341,53 @@
                  </property>
                 </widget>
                </item>
+               <item row="1" column="1">
+                <widget class="QCheckBox" name="TM_phaseShowButton">
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>TM_phase</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="Exp2ShowButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>exp</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </item>
              <item>
@@ -1281,109 +1398,25 @@
               </widget>
              </item>
              <item>
-              <spacer name="verticalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
+              <layout class="QHBoxLayout" name="ExportLayout_3">
+               <item>
+                <widget class="QPushButton" name="ImportButton2">
+                 <property name="text">
+                  <string>Загрузить данные</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="ExportButton2">
+                 <property name="text">
+                  <string>Сохранить данные</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </widget>
-          </widget>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMinimumSize</enum>
-          </property>
-          <property name="topMargin">
-           <number>20</number>
-          </property>
-          <item>
-           <widget class="QPushButton" name="Page2Button">
-            <property name="text">
-             <string>Дополнительные</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="Page1Button">
-            <property name="styleSheet">
-             <string notr="true">QPushButton#Page1Button {background-color: rgb(170, 170, 255)}</string>
-            </property>
-            <property name="text">
-             <string>Основные графики</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="checked">
-             <bool>false</bool>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-            <property name="default">
-             <bool>false</bool>
-            </property>
-            <property name="flat">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="0" column="2" rowspan="2">
-         <widget class="QStackedWidget" name="GraphsPages">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>1</horstretch>
-            <verstretch>1</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="sizeIncrement">
-           <size>
-            <width>1</width>
-            <height>1</height>
-           </size>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="MplWidget" name="graph">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>1</horstretch>
-             <verstretch>1</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>550</width>
-             <height>550</height>
-            </size>
-           </property>
-          </widget>
-          <widget class="mplwidget2" name="graph2">
-           <property name="minimumSize">
-            <size>
-             <width>550</width>
-             <height>550</height>
-            </size>
-           </property>
           </widget>
          </widget>
         </item>

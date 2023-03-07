@@ -79,6 +79,8 @@ class Data:
         # experimental data
         self.experiment_x = None
         self.experiment_y = None
+        self.experiment2_x = None
+        self.experiment2_y = None
 
     def init_new_charge(self):
         i = self.bound_number

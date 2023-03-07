@@ -26,9 +26,6 @@ QDoubleSpinBox{
     font-family: Arial, serif;
 }
 
-QSlider {
-    height: 80px;
-}
 
 QSlider:handle:horizontal {
     background: rgb(170, 170, 255);

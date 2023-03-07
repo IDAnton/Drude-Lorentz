@@ -67,6 +67,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.TE_phaseShowButton.stateChanged.connect(lambda state: self.graph2.TE_phase_12.set_visible(state))
         self.TM_phaseShowButton.stateChanged.connect(lambda state: self.graph2.TM_phase_12.set_visible(state))
         self.RNP_waveShowButton.stateChanged.connect(lambda state: self.graph2.RNP_wave.set_visible(state))
+        self.Exp2ShowButton.stateChanged.connect(lambda state: self.graph2.experimental.set_visible(state))
         for i in range(self.GraphShowGridLayout.count()):
             self.GraphShowGridLayout.itemAt(i).widget().stateChanged.connect(
                 lambda: self.graph.update_plots(self.data, data_changed=False, redraw_legend=True))
@@ -75,8 +76,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 lambda: self.graph2.update_plots(self.data, data_changed=False, redraw_legend=True))
 
         # import / export
-        self.ExportButton.clicked.connect(self.export_data)
-        self.ImportButton.clicked.connect(self.import_data)
+        self.ExportButton.clicked.connect(lambda: self.export_data(self.graph))
+        self.ImportButton.clicked.connect(lambda: self.import_data(self.ExpShowButton, self.graph))
+        self.ExportButton2.clicked.connect(lambda: self.export_data(self.graph2))
+        self.ImportButton2.clicked.connect(lambda: self.import_data(self.Exp2ShowButton, self.graph2))
 
         # angel
         self.AngelSlider.valueChanged.connect(lambda value: self.AngelSpinBox.setValue(value))
@@ -101,29 +104,35 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Page2Button.setStyleSheet("QPushButton#Page2Button {background-color: rgb(170, 170, 255)}")
         self.Page1Button.setStyleSheet("QPushButton#Page1Button {background-color: rgb('FBFBFBFF')}")
 
-    def import_data(self):
+    def import_data(self, ExpShowButton, graph):
         data_file = QtWidgets.QFileDialog.getOpenFileName()
         try:
             data = np.loadtxt(data_file[0])
-            self.data.experiment_x, self.data.experiment_y = np.hsplit(data, 2)
+            if ExpShowButton == self.ExpShowButton:
+                self.data.experiment_x, self.data.experiment_y = np.hsplit(data, 2)
+            if ExpShowButton == self.Exp2ShowButton:
+                self.data.experiment2_x, self.data.experiment2_y = np.hsplit(data, 2)
         except ValueError as e:
             QtWidgets.QMessageBox.critical(None, "Ошибка импорта", f"Файл содержит некорректные данные")
             return
-        self.ExpShowButton.setEnabled(True)
-        self.ExpShowButton.setChecked(True)
-        self.graph.update_plots(self.data)
+        ExpShowButton.setEnabled(True)
+        ExpShowButton.setChecked(True)
+        graph.update_plots(self.data)
 
-    def export_data(self):
-        pass
-        # directory = str(QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory"))
-        # if self.NShowButton.isChecked():
-        #     np.savetxt(f"{directory}/N_n.txt", np.c_[self.data.w, self.data.N_n])
-        # if self.KShowButton.isChecked():
-        #     np.savetxt(f"{directory}/N_k.txt", np.c_[self.data.w, self.data.N_k])
-        # if self.AlphaShowButton.isChecked():
-        #     np.savetxt(f"{directory}/alpha.txt", np.c_[self.data.w, self.data.alpha])
-        # if self.DShowButton.isChecked():
-        #     np.savetxt(f"{directory}/D.txt", np.c_[self.data.w, self.data.D])
+    def export_data(self, graph):
+        showed_graphs = [line for line in graph.canvas.ax.get_lines() if line._visible]
+        if len(showed_graphs) > 1:
+            QtWidgets.QMessageBox.warning(None, "Ошибка экспорта", f"Необходимо выбрать только один график")
+            return
+        if len(showed_graphs) == 0:
+            QtWidgets.QMessageBox.warning(None, "Ошибка экспорта", f"Выберите один график для экспорта")
+            return
+        x = showed_graphs[0].get_xdata()
+        y = showed_graphs[0].get_ydata()
+        lable = showed_graphs[0].get_label()
+        file = QtWidgets.QFileDialog.getSaveFileName()[0]
+        np.savetxt(fname=file, X=np.column_stack((x, y)))
+        QtWidgets.QMessageBox.information(None, "Файл сохранен", f"{lable} сохранен")
 
     def charge_selection(self):
         i = self.ChargeComboBox.currentIndex()

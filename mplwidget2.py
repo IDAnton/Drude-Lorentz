@@ -34,6 +34,7 @@ class mplwidget2(QtWidgets.QWidget):
         self.TE_phase_12, = self.canvas.ax.plot([], [], label="TE_phase")
         self.TM_phase_12, = self.canvas.ax.plot([], [], label="TM_phase")
         self.RNP_wave, = self.canvas.ax.plot([], [], label="RNP")
+        self.experimental, = self.canvas.ax.plot([], [], label="experiment")
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
         self.canvas.ax.legend(loc='upper right', ncols=2, fontsize=12)
@@ -42,6 +43,7 @@ class mplwidget2(QtWidgets.QWidget):
         self.TE_phase_12.set_visible(False)
         self.TM_phase_12.set_visible(False)
         self.RNP_wave.set_visible(False)
+        self.experimental.set_visible(False)
         self.redraw_legends()  # show only visible legends
 
     def update_plots(self, data, data_changed=True, redraw_legend=False):
@@ -51,6 +53,8 @@ class mplwidget2(QtWidgets.QWidget):
             self.TE_phase_12.set_data(data.w, data.TE_phase)
             self.TM_phase_12.set_data(data.w, data.TM_phase)
             self.RNP_wave.set_data(data.w, data.RNP)
+            if (data.experiment2_x is not None) and (data.experiment2_y is not None):
+                self.experimental.set_data(data.experiment2_x, data.experiment2_y)
         if redraw_legend:
             self.redraw_legends()
         self.canvas.ax.relim(visible_only=True)

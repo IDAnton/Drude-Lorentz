@@ -49,13 +49,61 @@ class Ui_MainWindow(object):
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setSpacing(6)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setSizeConstraint(QLayout.SetMinimumSize)
+        self.horizontalLayout_5.setContentsMargins(-1, 20, -1, -1)
+        self.Page2Button = QPushButton(self.centralwidget)
+        self.Page2Button.setObjectName(u"Page2Button")
+        self.Page2Button.setCheckable(False)
+
+        self.horizontalLayout_5.addWidget(self.Page2Button)
+
+        self.Page1Button = QPushButton(self.centralwidget)
+        self.Page1Button.setObjectName(u"Page1Button")
+        self.Page1Button.setStyleSheet(u"QPushButton#Page1Button {background-color: rgb(170, 170, 255)}")
+        self.Page1Button.setCheckable(False)
+        self.Page1Button.setChecked(False)
+        self.Page1Button.setAutoDefault(False)
+        self.Page1Button.setFlat(False)
+
+        self.horizontalLayout_5.addWidget(self.Page1Button)
+
+
+        self.gridLayout.addLayout(self.horizontalLayout_5, 0, 0, 1, 1)
+
+        self.GraphsPages = QStackedWidget(self.centralwidget)
+        self.GraphsPages.setObjectName(u"GraphsPages")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(1)
+        sizePolicy.setHeightForWidth(self.GraphsPages.sizePolicy().hasHeightForWidth())
+        self.GraphsPages.setSizePolicy(sizePolicy)
+        self.GraphsPages.setSizeIncrement(QSize(1, 1))
+        self.graph = MplWidget()
+        self.graph.setObjectName(u"graph")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(1)
+        sizePolicy1.setVerticalStretch(1)
+        sizePolicy1.setHeightForWidth(self.graph.sizePolicy().hasHeightForWidth())
+        self.graph.setSizePolicy(sizePolicy1)
+        self.graph.setMinimumSize(QSize(550, 550))
+        self.GraphsPages.addWidget(self.graph)
+        self.graph2 = mplwidget2()
+        self.graph2.setObjectName(u"graph2")
+        self.graph2.setMinimumSize(QSize(550, 550))
+        self.GraphsPages.addWidget(self.graph2)
+
+        self.gridLayout.addWidget(self.GraphsPages, 0, 2, 2, 1)
+
         self.ParametrsPages = QStackedWidget(self.centralwidget)
         self.ParametrsPages.setObjectName(u"ParametrsPages")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.ParametrsPages.sizePolicy().hasHeightForWidth())
-        self.ParametrsPages.setSizePolicy(sizePolicy)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.ParametrsPages.sizePolicy().hasHeightForWidth())
+        self.ParametrsPages.setSizePolicy(sizePolicy2)
         self.ParametrsPages.setMaximumSize(QSize(350, 16777215))
         self.ParametrsPages.setCursor(QCursor(Qt.ArrowCursor))
         self.ParametrsPages.setFocusPolicy(Qt.WheelFocus)
@@ -74,11 +122,11 @@ class Ui_MainWindow(object):
         self.MainParamsLayout.setRowWrapPolicy(QFormLayout.DontWrapRows)
         self.EpsilonLimitInput = QDoubleSpinBox(self.Page1)
         self.EpsilonLimitInput.setObjectName(u"EpsilonLimitInput")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.EpsilonLimitInput.sizePolicy().hasHeightForWidth())
-        self.EpsilonLimitInput.setSizePolicy(sizePolicy1)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.EpsilonLimitInput.sizePolicy().hasHeightForWidth())
+        self.EpsilonLimitInput.setSizePolicy(sizePolicy3)
         self.EpsilonLimitInput.setFont(font)
         self.EpsilonLimitInput.setLayoutDirection(Qt.LeftToRight)
         self.EpsilonLimitInput.setAutoFillBackground(False)
@@ -105,11 +153,11 @@ class Ui_MainWindow(object):
         self.W_RangeLayout.setObjectName(u"W_RangeLayout")
         self.W2_RangeInput = QDoubleSpinBox(self.Page1)
         self.W2_RangeInput.setObjectName(u"W2_RangeInput")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.W2_RangeInput.sizePolicy().hasHeightForWidth())
-        self.W2_RangeInput.setSizePolicy(sizePolicy2)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.W2_RangeInput.sizePolicy().hasHeightForWidth())
+        self.W2_RangeInput.setSizePolicy(sizePolicy4)
         self.W2_RangeInput.setFont(font)
         self.W2_RangeInput.setLayoutDirection(Qt.LeftToRight)
         self.W2_RangeInput.setInputMethodHints(Qt.ImhFormattedNumbersOnly)
@@ -153,11 +201,11 @@ class Ui_MainWindow(object):
 
         self.ThicknessInput = QDoubleSpinBox(self.Page1)
         self.ThicknessInput.setObjectName(u"ThicknessInput")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.ThicknessInput.sizePolicy().hasHeightForWidth())
-        self.ThicknessInput.setSizePolicy(sizePolicy3)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.ThicknessInput.sizePolicy().hasHeightForWidth())
+        self.ThicknessInput.setSizePolicy(sizePolicy5)
         self.ThicknessInput.setFont(font)
         self.ThicknessInput.setLayoutDirection(Qt.LeftToRight)
         self.ThicknessInput.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -219,11 +267,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(-1, 0, -1, -1)
         self.NInputPow = QDoubleSpinBox(self.Page1)
         self.NInputPow.setObjectName(u"NInputPow")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Ignored)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.NInputPow.sizePolicy().hasHeightForWidth())
-        self.NInputPow.setSizePolicy(sizePolicy4)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Ignored)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.NInputPow.sizePolicy().hasHeightForWidth())
+        self.NInputPow.setSizePolicy(sizePolicy6)
         self.NInputPow.setFont(font)
         self.NInputPow.setLayoutDirection(Qt.LeftToRight)
         self.NInputPow.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -237,11 +285,11 @@ class Ui_MainWindow(object):
 
         self.Npow = QLabel(self.Page1)
         self.Npow.setObjectName(u"Npow")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.Npow.sizePolicy().hasHeightForWidth())
-        self.Npow.setSizePolicy(sizePolicy5)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.Npow.sizePolicy().hasHeightForWidth())
+        self.Npow.setSizePolicy(sizePolicy7)
         self.Npow.setFont(font)
         self.Npow.setTextFormat(Qt.AutoText)
         self.Npow.setScaledContents(True)
@@ -250,11 +298,11 @@ class Ui_MainWindow(object):
 
         self.NInput = QDoubleSpinBox(self.Page1)
         self.NInput.setObjectName(u"NInput")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.NInput.sizePolicy().hasHeightForWidth())
-        self.NInput.setSizePolicy(sizePolicy6)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.NInput.sizePolicy().hasHeightForWidth())
+        self.NInput.setSizePolicy(sizePolicy8)
         self.NInput.setFont(font)
         self.NInput.setLayoutDirection(Qt.LeftToRight)
         self.NInput.setWrapping(False)
@@ -286,11 +334,11 @@ class Ui_MainWindow(object):
         self.ChargeLayout.setRowWrapPolicy(QFormLayout.DontWrapRows)
         self.ChargeMassInput = QDoubleSpinBox(self.Page1)
         self.ChargeMassInput.setObjectName(u"ChargeMassInput")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.ChargeMassInput.sizePolicy().hasHeightForWidth())
-        self.ChargeMassInput.setSizePolicy(sizePolicy7)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.ChargeMassInput.sizePolicy().hasHeightForWidth())
+        self.ChargeMassInput.setSizePolicy(sizePolicy9)
         self.ChargeMassInput.setFont(font)
         self.ChargeMassInput.setLayoutDirection(Qt.LeftToRight)
         self.ChargeMassInput.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -332,8 +380,8 @@ class Ui_MainWindow(object):
 
         self.EffectiveChargeInput = QDoubleSpinBox(self.Page1)
         self.EffectiveChargeInput.setObjectName(u"EffectiveChargeInput")
-        sizePolicy6.setHeightForWidth(self.EffectiveChargeInput.sizePolicy().hasHeightForWidth())
-        self.EffectiveChargeInput.setSizePolicy(sizePolicy6)
+        sizePolicy8.setHeightForWidth(self.EffectiveChargeInput.sizePolicy().hasHeightForWidth())
+        self.EffectiveChargeInput.setSizePolicy(sizePolicy8)
         self.EffectiveChargeInput.setFont(font)
         self.EffectiveChargeInput.setLayoutDirection(Qt.LeftToRight)
         self.EffectiveChargeInput.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -534,20 +582,20 @@ class Ui_MainWindow(object):
 
         self.ParamsVerticalLayout.addWidget(self.line_3)
 
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.ExportLayout = QHBoxLayout()
+        self.ExportLayout.setObjectName(u"ExportLayout")
         self.ImportButton = QPushButton(self.Page1)
         self.ImportButton.setObjectName(u"ImportButton")
 
-        self.horizontalLayout_2.addWidget(self.ImportButton)
+        self.ExportLayout.addWidget(self.ImportButton)
 
         self.ExportButton = QPushButton(self.Page1)
         self.ExportButton.setObjectName(u"ExportButton")
 
-        self.horizontalLayout_2.addWidget(self.ExportButton)
+        self.ExportLayout.addWidget(self.ExportButton)
 
 
-        self.ParamsVerticalLayout.addLayout(self.horizontalLayout_2)
+        self.ParamsVerticalLayout.addLayout(self.ExportLayout)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -558,7 +606,7 @@ class Ui_MainWindow(object):
         self.Page2.setObjectName(u"Page2")
         self.layoutWidget = QWidget(self.Page2)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(0, 0, 351, 158))
+        self.layoutWidget.setGeometry(QRect(0, 0, 351, 174))
         self.GraphShowLayout_2 = QVBoxLayout(self.layoutWidget)
         self.GraphShowLayout_2.setSpacing(6)
         self.GraphShowLayout_2.setObjectName(u"GraphShowLayout_2")
@@ -618,6 +666,7 @@ class Ui_MainWindow(object):
 
         self.GraphShowGridLayout_2 = QGridLayout()
         self.GraphShowGridLayout_2.setObjectName(u"GraphShowGridLayout_2")
+        self.GraphShowGridLayout_2.setVerticalSpacing(6)
         self.RTE_waveShowButton = QCheckBox(self.layoutWidget)
         self.RTE_waveShowButton.setObjectName(u"RTE_waveShowButton")
         self.RTE_waveShowButton.setFont(font)
@@ -653,17 +702,6 @@ class Ui_MainWindow(object):
 
         self.GraphShowGridLayout_2.addWidget(self.RNP_waveShowButton, 0, 0, 1, 1)
 
-        self.TM_phaseShowButton = QCheckBox(self.layoutWidget)
-        self.TM_phaseShowButton.setObjectName(u"TM_phaseShowButton")
-        self.TM_phaseShowButton.setFont(font)
-        self.TM_phaseShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
-"     width: 20px;\n"
-"     height: 20px;\n"
-"}")
-        self.TM_phaseShowButton.setChecked(False)
-
-        self.GraphShowGridLayout_2.addWidget(self.TM_phaseShowButton, 1, 0, 1, 1)
-
         self.TE_phaseShowButton = QCheckBox(self.layoutWidget)
         self.TE_phaseShowButton.setObjectName(u"TE_phaseShowButton")
         self.TE_phaseShowButton.setFont(font)
@@ -673,7 +711,30 @@ class Ui_MainWindow(object):
 "}")
         self.TE_phaseShowButton.setChecked(False)
 
-        self.GraphShowGridLayout_2.addWidget(self.TE_phaseShowButton, 1, 1, 1, 1)
+        self.GraphShowGridLayout_2.addWidget(self.TE_phaseShowButton, 1, 2, 1, 1)
+
+        self.TM_phaseShowButton = QCheckBox(self.layoutWidget)
+        self.TM_phaseShowButton.setObjectName(u"TM_phaseShowButton")
+        self.TM_phaseShowButton.setFont(font)
+        self.TM_phaseShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
+        self.TM_phaseShowButton.setChecked(False)
+
+        self.GraphShowGridLayout_2.addWidget(self.TM_phaseShowButton, 1, 1, 1, 1)
+
+        self.Exp2ShowButton = QCheckBox(self.layoutWidget)
+        self.Exp2ShowButton.setObjectName(u"Exp2ShowButton")
+        self.Exp2ShowButton.setEnabled(False)
+        self.Exp2ShowButton.setFont(font)
+        self.Exp2ShowButton.setStyleSheet(u"QCheckBox::indicator {\n"
+"     width: 20px;\n"
+"     height: 20px;\n"
+"}")
+        self.Exp2ShowButton.setChecked(False)
+
+        self.GraphShowGridLayout_2.addWidget(self.Exp2ShowButton, 1, 0, 1, 1)
 
 
         self.GraphShowLayout_2.addLayout(self.GraphShowGridLayout_2)
@@ -685,61 +746,24 @@ class Ui_MainWindow(object):
 
         self.GraphShowLayout_2.addWidget(self.line_4)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.ExportLayout_3 = QHBoxLayout()
+        self.ExportLayout_3.setObjectName(u"ExportLayout_3")
+        self.ImportButton2 = QPushButton(self.layoutWidget)
+        self.ImportButton2.setObjectName(u"ImportButton2")
 
-        self.GraphShowLayout_2.addItem(self.verticalSpacer_2)
+        self.ExportLayout_3.addWidget(self.ImportButton2)
+
+        self.ExportButton2 = QPushButton(self.layoutWidget)
+        self.ExportButton2.setObjectName(u"ExportButton2")
+
+        self.ExportLayout_3.addWidget(self.ExportButton2)
+
+
+        self.GraphShowLayout_2.addLayout(self.ExportLayout_3)
 
         self.ParametrsPages.addWidget(self.Page2)
 
         self.gridLayout.addWidget(self.ParametrsPages, 1, 0, 1, 1)
-
-        self.horizontalLayout_5 = QHBoxLayout()
-        self.horizontalLayout_5.setSpacing(6)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.horizontalLayout_5.setSizeConstraint(QLayout.SetMinimumSize)
-        self.horizontalLayout_5.setContentsMargins(-1, 20, -1, -1)
-        self.Page2Button = QPushButton(self.centralwidget)
-        self.Page2Button.setObjectName(u"Page2Button")
-        self.Page2Button.setCheckable(False)
-
-        self.horizontalLayout_5.addWidget(self.Page2Button)
-
-        self.Page1Button = QPushButton(self.centralwidget)
-        self.Page1Button.setObjectName(u"Page1Button")
-        self.Page1Button.setStyleSheet(u"QPushButton#Page1Button {background-color: rgb(170, 170, 255)}")
-        self.Page1Button.setCheckable(False)
-        self.Page1Button.setChecked(False)
-        self.Page1Button.setAutoDefault(False)
-        self.Page1Button.setFlat(False)
-
-        self.horizontalLayout_5.addWidget(self.Page1Button)
-
-
-        self.gridLayout.addLayout(self.horizontalLayout_5, 0, 0, 1, 1)
-
-        self.GraphsPages = QStackedWidget(self.centralwidget)
-        self.GraphsPages.setObjectName(u"GraphsPages")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy8.setHorizontalStretch(1)
-        sizePolicy8.setVerticalStretch(1)
-        sizePolicy8.setHeightForWidth(self.GraphsPages.sizePolicy().hasHeightForWidth())
-        self.GraphsPages.setSizePolicy(sizePolicy8)
-        self.GraphsPages.setSizeIncrement(QSize(1, 1))
-        self.graph = MplWidget()
-        self.graph.setObjectName(u"graph")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy9.setHorizontalStretch(1)
-        sizePolicy9.setVerticalStretch(1)
-        sizePolicy9.setHeightForWidth(self.graph.sizePolicy().hasHeightForWidth())
-        self.graph.setSizePolicy(sizePolicy9)
-        self.graph.setMinimumSize(QSize(550, 550))
-        self.GraphsPages.addWidget(self.graph)
-        self.graph2 = mplwidget2()
-        self.graph2.setObjectName(u"graph2")
-        self.graph2.setMinimumSize(QSize(550, 550))
-        self.GraphsPages.addWidget(self.graph2)
-
-        self.gridLayout.addWidget(self.GraphsPages, 0, 2, 2, 1)
 
         self.gridLayout.setColumnStretch(0, 1)
 
@@ -752,10 +776,10 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.ParametrsPages.setCurrentIndex(0)
-        self.ChargeComboBox.setCurrentIndex(0)
         self.Page1Button.setDefault(False)
         self.GraphsPages.setCurrentIndex(0)
+        self.ParametrsPages.setCurrentIndex(0)
+        self.ChargeComboBox.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -763,6 +787,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.Page2Button.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435", None))
+        self.Page1Button.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0441\u043d\u043e\u0432\u043d\u044b\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u0438", None))
         self.EpsilonLimitText.setText(QCoreApplication.translate("MainWindow", u"\u03b5 \u043f\u043b\u0435\u043d\u043a\u0438", None))
         self.RangeSpliterText.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.W_RangeText.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0438\u0430\u043f\u0430\u0437\u043e\u043d \u0447\u0430\u0441\u0442\u043e\u0442", None))
@@ -799,9 +825,10 @@ class Ui_MainWindow(object):
         self.RTE_waveShowButton.setText(QCoreApplication.translate("MainWindow", u"RTE", None))
         self.RTM_waveButton.setText(QCoreApplication.translate("MainWindow", u"RTM", None))
         self.RNP_waveShowButton.setText(QCoreApplication.translate("MainWindow", u"RNP", None))
-        self.TM_phaseShowButton.setText(QCoreApplication.translate("MainWindow", u"TM_phase", None))
         self.TE_phaseShowButton.setText(QCoreApplication.translate("MainWindow", u"TE_phase", None))
-        self.Page2Button.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435", None))
-        self.Page1Button.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0441\u043d\u043e\u0432\u043d\u044b\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u0438", None))
+        self.TM_phaseShowButton.setText(QCoreApplication.translate("MainWindow", u"TM_phase", None))
+        self.Exp2ShowButton.setText(QCoreApplication.translate("MainWindow", u"exp", None))
+        self.ImportButton2.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
+        self.ExportButton2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435", None))
     # retranslateUi
 
