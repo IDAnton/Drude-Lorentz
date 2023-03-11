@@ -220,6 +220,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.GammaInput.setValue(self.data.free_gamma)
         self.EffectiveChargeInput.setValue(self.data.free_charge)
         self.PlasmOmegaText.setText(str(round(self.data.w_plasm_0, 3)))
+        self.AngelSpinBox.setValue(float(self.data.angle) /np.pi * 180)
+        self.AngelSlider.setValue(float(self.data.angle) / np.pi * 180)
 
 
 app = QtWidgets.QApplication(sys.argv)
