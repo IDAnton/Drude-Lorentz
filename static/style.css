@@ -1,6 +1,7 @@
 QLabel {
     font-size: 12pt;
     font-family: Arial, serif;
+    color: rgb(0, 0, 0)
 }
 
 QWidget{
@@ -9,12 +10,14 @@ QWidget{
 
 QComboBox{
     selection-background-color: rgb(170, 170, 255);
+    color: rgb(0, 0, 0)
 }
 
 
 QPushButton {
     font-size: 12pt;
     font-family: Arial, serif;
+    color: rgb(0, 0, 0)
 }
 
 QPushButton:hover {
@@ -24,6 +27,17 @@ QPushButton:hover {
 QDoubleSpinBox{
     font-size: 12pt;
     font-family: Arial, serif;
+    color: rgb(0, 0, 0)
+}
+
+QSpinBox{
+    font-size: 12pt;
+    font-family: Arial, serif;
+    color: rgb(0, 0, 0)
+}
+
+QCheckBox{
+    color: rgb(0, 0, 0)
 }
 
 
