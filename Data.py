@@ -9,7 +9,7 @@ MAX_MODES = 10
 
 class Data:
     def __init__(self, w_range=(10, 4500), discretization=1000, free_N=1e18, free_mass=ELECTRON_MASS_GRAMS,
-                 free_gamma=1, membrane_epsilon_limit=20, bound_number=0, thickness=100, N_media=1, free_charge=ELECTRON_CHARGE,
+                 free_gamma=1, membrane_epsilon_limit=20, bound_number=0, thickness=100 * 1e-7, N_media=1, free_charge=ELECTRON_CHARGE,
                  free_freq_vibration=1100, angle_degrees=45):
         # global params
         self.discretization = discretization

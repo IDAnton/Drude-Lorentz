@@ -196,7 +196,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.update_data()
 
     def update_thickness(self):
-        self.data.thickness = self.ThicknessInput.value()
+        self.data.thickness = self.ThicknessInput.value() * 1e-7
         self.update_data()
 
     def update_data(self):
@@ -211,7 +211,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.EpsilonLimitInput.setValue(self.data.membrane_epsilon_limit)
         self.W1_RangeInput.setValue(self.data.w_range[0])
         self.W2_RangeInput.setValue(self.data.w_range[1])
-        self.ThicknessInput.setValue(self.data.thickness)
+        self.ThicknessInput.setValue(self.data.thickness / 1e-7)
         self.BoundCountInput.setValue(self.data.bound_number)
         # sync free charge values
         self.NInput.setValue(float(str(self.data.free_N).split("e")[0]))

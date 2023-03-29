@@ -199,23 +199,6 @@ class Ui_MainWindow(object):
 
         self.MainParamsLayout.setWidget(1, QFormLayout.FieldRole, self.W_RangeText)
 
-        self.ThicknessInput = QDoubleSpinBox(self.Page1)
-        self.ThicknessInput.setObjectName(u"ThicknessInput")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.ThicknessInput.sizePolicy().hasHeightForWidth())
-        self.ThicknessInput.setSizePolicy(sizePolicy5)
-        self.ThicknessInput.setFont(font)
-        self.ThicknessInput.setLayoutDirection(Qt.LeftToRight)
-        self.ThicknessInput.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.ThicknessInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
-        self.ThicknessInput.setDecimals(0)
-        self.ThicknessInput.setMaximum(9999.000000000000000)
-        self.ThicknessInput.setValue(1.000000000000000)
-
-        self.MainParamsLayout.setWidget(2, QFormLayout.LabelRole, self.ThicknessInput)
-
         self.MembraneThicknessText = QLabel(self.Page1)
         self.MembraneThicknessText.setObjectName(u"MembraneThicknessText")
         self.MembraneThicknessText.setFont(font)
@@ -238,6 +221,33 @@ class Ui_MainWindow(object):
         self.ChargeCountLabel.setFont(font)
 
         self.MainParamsLayout.setWidget(3, QFormLayout.FieldRole, self.ChargeCountLabel)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.hmlabel = QLabel(self.Page1)
+        self.hmlabel.setObjectName(u"hmlabel")
+
+        self.horizontalLayout_6.addWidget(self.hmlabel)
+
+        self.ThicknessInput = QDoubleSpinBox(self.Page1)
+        self.ThicknessInput.setObjectName(u"ThicknessInput")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.ThicknessInput.sizePolicy().hasHeightForWidth())
+        self.ThicknessInput.setSizePolicy(sizePolicy5)
+        self.ThicknessInput.setFont(font)
+        self.ThicknessInput.setLayoutDirection(Qt.LeftToRight)
+        self.ThicknessInput.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.ThicknessInput.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.ThicknessInput.setDecimals(0)
+        self.ThicknessInput.setMaximum(9999.000000000000000)
+        self.ThicknessInput.setValue(100.000000000000000)
+
+        self.horizontalLayout_6.addWidget(self.ThicknessInput)
+
+
+        self.MainParamsLayout.setLayout(2, QFormLayout.LabelRole, self.horizontalLayout_6)
 
 
         self.ParamsVerticalLayout.addLayout(self.MainParamsLayout)
@@ -794,6 +804,7 @@ class Ui_MainWindow(object):
         self.W_RangeText.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0438\u0430\u043f\u0430\u0437\u043e\u043d \u0447\u0430\u0441\u0442\u043e\u0442", None))
         self.MembraneThicknessText.setText(QCoreApplication.translate("MainWindow", u"\u0422\u043e\u043b\u0449\u0438\u043d\u0430 \u043c\u0435\u043c\u0431\u0440\u0430\u043d\u044b", None))
         self.ChargeCountLabel.setText(QCoreApplication.translate("MainWindow", u"\u0427\u0438\u0441\u043b\u043e \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0445 \u0437\u0430\u0440\u044f\u0434\u043e\u0432 ", None))
+        self.hmlabel.setText(QCoreApplication.translate("MainWindow", u"nm", None))
         self.ChargeComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439 \u0437\u0430\u0440\u044f\u0434", None))
 
         self.ChargeComboBox.setCurrentText(QCoreApplication.translate("MainWindow", u"\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439 \u0437\u0430\u0440\u044f\u0434", None))
