@@ -38,6 +38,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.W2_RangeInput.valueChanged.connect(self.update_w_range)
         self.ThicknessInput.valueChanged.connect(self.update_thickness)
         self.BoundCountInput.valueChanged.connect(self.update_bound_count)
+        self.N_media_n_input.valueChanged.connect(self.update_N_media)
+        self.N_media_k_input.valueChanged.connect(self.update_N_media)
 
         # charge params
         self.ChargeComboBox.currentIndexChanged.connect(self.charge_selection)
@@ -190,6 +192,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.data.membrane_epsilon_limit = self.EpsilonLimitInput.value()
         self.update_data()
 
+    def update_N_media(self):
+        self.data.N_media = self.N_media_n_input.value() + 1j * self.N_media_k_input.value()
+        self.update_data()
+
     def update_w_range(self):
         self.data.w_range = self.W1_RangeInput.value(), self.W2_RangeInput.value()
         self.data.update_w_range()
@@ -209,6 +215,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def sync_defaults(self):
         # sync base values
         self.EpsilonLimitInput.setValue(self.data.membrane_epsilon_limit)
+        self.N_media_n_input.setValue(np.real(self.data.N_media))
+        self.N_media_k_input.setValue(np.imag(self.data.N_media))
         self.W1_RangeInput.setValue(self.data.w_range[0])
         self.W2_RangeInput.setValue(self.data.w_range[1])
         self.ThicknessInput.setValue(self.data.thickness / 1e-7)
