@@ -34,6 +34,9 @@ class Data:
         self.TE_phase = np.zeros(self.discretization, dtype=np.double)
         self.TM_phase = np.zeros(self.discretization, dtype=np.double)
         self.RNP = np.zeros(self.discretization, dtype=np.double)
+        self.tau_12 = np.zeros(self.discretization, dtype=np.complex128)
+        self.tau_13 = np.zeros(self.discretization, dtype=np.complex128)
+        self.tau = np.zeros(self.discretization, dtype=np.complex128)
         N = 1  # ??
         #self.r_12 = (self.N_air - N) / (self.N_air + N)
         #self.r_23 = (N - self.N_media) / (N + self.N_media)
@@ -145,18 +148,15 @@ class Data:
         self.R_12 = self.r_12 * np.conjugate(self.r_12)
         self.R_23 = self.r_23 * np.conjugate(self.r_23)
 
-    def transmission_of_the_film(self):  # returns transmission
-        delta = 2 * self.thickness * self.N_n
-        self.T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.w))
+    #def transmission_of_the_film(self):  # returns transmission
+        #delta = 2 * self.thickness * self.N_n
+        #self.T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.w))
 
     def phase(self):  # returns phase_12
         self.phi = np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
 
-    def A_coef(self):  # optical density of the film with interference
-        self.A = -np.log(self.T)
-
     def angle_cos_calc(self):
-        self.cos_angle = np.sqrt(1 - np.power((self.N_air * np.conjugate(self.N_air) / (self.N * np.conjugate(self.N))), 1) * np.power(np.sin(self.angle), 2))
+        self.cos_angle = np.sqrt(1 - (self.N_air * self.N_air) * np.power(np.sin(self.angle), 2) / (self.N * self.N))
 
     def rTE_calc(self):
         self.rTE = (self.N_air * np.cos(self.angle) - self.N * self.cos_angle) / (self.N_air * np.cos(self.angle) + self.N * self.cos_angle)
@@ -172,3 +172,12 @@ class Data:
 
     def RNP_calc(self):
         self.RNP = (self.RTE + self.RTM) / 2
+
+    def transmission_of_the_film(self):  # returns transmission:
+        self.tau_12 = 2 * self.N_air / (self.N_air + self.N)
+        self.tau_13 = 2 * self.N_air / (self.N_media + self.N)
+        self.tau = (self.tau_12 * self.tau_13 * np.exp(-1 * self.alpha * self.thickness)) / (1 + self.r_12 * self.r_23 * np.exp(-2 * self.alpha * self.thickness) * np.cos(2 * np.pi * 2 * self.thickness * self.N_n * self.w))
+        self.T = self.tau * np.conjugate(self.tau)
+
+    def A_coef(self):  # optical density of the film with interference
+        self.A = -np.log(self.T)
