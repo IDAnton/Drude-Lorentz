@@ -48,3 +48,8 @@ QSlider:handle:horizontal {
     height: 80px;
 }
 
+QToolTip {
+    border-radius: 10px;
+    padding: 1px;
+    background-color: rgb(247, 247, 247);
+}

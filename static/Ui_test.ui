@@ -22,6 +22,12 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <property name="toolTipDuration">
+   <number>-1</number>
+  </property>
   <property name="layoutDirection">
    <enum>Qt::RightToLeft</enum>
   </property>
@@ -99,47 +105,6 @@
            </widget>
           </item>
          </layout>
-        </item>
-        <item row="0" column="2" rowspan="2">
-         <widget class="QStackedWidget" name="GraphsPages">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>1</horstretch>
-            <verstretch>1</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="sizeIncrement">
-           <size>
-            <width>1</width>
-            <height>1</height>
-           </size>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="MplWidget" name="graph">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>1</horstretch>
-             <verstretch>1</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>550</width>
-             <height>550</height>
-            </size>
-           </property>
-          </widget>
-          <widget class="mplwidget2" name="graph2">
-           <property name="minimumSize">
-            <size>
-             <width>550</width>
-             <height>550</height>
-            </size>
-           </property>
-          </widget>
-         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QStackedWidget" name="ParametrsPages">
@@ -944,6 +909,15 @@
                   <property name="contextMenuPolicy">
                    <enum>Qt::DefaultContextMenu</enum>
                   </property>
+                  <property name="toolTip">
+                   <string notr="true">Реальная часть диэлектрической проницаемости</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>-1</number>
+                  </property>
+                  <property name="whatsThis">
+                   <string/>
+                  </property>
                   <property name="layoutDirection">
                    <enum>Qt::RightToLeft</enum>
                   </property>
@@ -959,6 +933,9 @@
                   <property name="checked">
                    <bool>false</bool>
                   </property>
+                  <property name="tristate">
+                   <bool>false</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="0" column="2">
@@ -968,6 +945,9 @@
                     <family>Arial</family>
                     <pointsize>12</pointsize>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>Мнимая часть диэлектрической проницаемости</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
@@ -991,6 +971,9 @@
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Реальная часть показателя преломления</string>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1012,6 +995,9 @@
                     <family>Arial</family>
                     <pointsize>12</pointsize>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>Мнимая часть показателя преломления</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
@@ -1035,6 +1021,9 @@
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Коэффициент отражения по интенсивности</string>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1042,7 +1031,7 @@
 }</string>
                   </property>
                   <property name="text">
-                   <string>R(ν) </string>
+                   <string>R₁₂(ν) </string>
                   </property>
                   <property name="checked">
                    <bool>false</bool>
@@ -1056,6 +1045,9 @@
                     <family>Arial</family>
                     <pointsize>12</pointsize>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>Фаза коэффициента отражения по амплитуде</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
@@ -1101,6 +1093,9 @@
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Оптическая плотность плёнки (без учёта интерференции)</string>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1126,6 +1121,9 @@
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Пропускание плёнки при нормальном падении</string>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1148,6 +1146,9 @@
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Оптическая плотность плёнки (с учётом интерференции)</string>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1162,7 +1163,7 @@
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="1">
+                <item row="2" column="0">
                  <widget class="QCheckBox" name="ExpShowButton">
                   <property name="enabled">
                    <bool>false</bool>
@@ -1172,6 +1173,9 @@
                     <family>Arial</family>
                     <pointsize>12</pointsize>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>Экспериментальный спектр</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">QCheckBox::indicator {
@@ -1184,6 +1188,30 @@
                   </property>
                   <property name="checked">
                    <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QCheckBox" name="RButton">
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>Отражение плёнки при нормальном падении</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QCheckBox::indicator {
+     width: 20px;
+     height: 20px;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>R (V)</string>
                   </property>
                  </widget>
                 </item>
@@ -1349,6 +1377,9 @@
                  <property name="contextMenuPolicy">
                   <enum>Qt::DefaultContextMenu</enum>
                  </property>
+                 <property name="toolTip">
+                  <string>Коэффициент отражения по интенсивности для TE-волны</string>
+                 </property>
                  <property name="layoutDirection">
                   <enum>Qt::RightToLeft</enum>
                  </property>
@@ -1374,6 +1405,9 @@
                    <pointsize>12</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Коэффициент отражения по интенсивности для TM-волны</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1395,6 +1429,9 @@
                    <family>Arial</family>
                    <pointsize>12</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Коэффициент отражения по интенсивности неполяризованной волны</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QCheckBox::indicator {
@@ -1418,6 +1455,9 @@
                    <pointsize>12</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Фаза коэффициента отражения по амплитуде для TE-волны</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1425,7 +1465,7 @@
 }</string>
                  </property>
                  <property name="text">
-                  <string>TE_phase</string>
+                  <string>TE phase</string>
                  </property>
                  <property name="checked">
                   <bool>false</bool>
@@ -1440,6 +1480,9 @@
                    <pointsize>12</pointsize>
                   </font>
                  </property>
+                 <property name="toolTip">
+                  <string>Фаза коэффициента отражения по амплитуде для TM-волны</string>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QCheckBox::indicator {
      width: 20px;
@@ -1447,7 +1490,7 @@
 }</string>
                  </property>
                  <property name="text">
-                  <string>TM_phase</string>
+                  <string>TM phase</string>
                  </property>
                  <property name="checked">
                   <bool>false</bool>
@@ -1464,6 +1507,9 @@
                    <family>Arial</family>
                    <pointsize>12</pointsize>
                   </font>
+                 </property>
+                 <property name="toolTip">
+                  <string>Экспериментальный спектр</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QCheckBox::indicator {
@@ -1508,6 +1554,47 @@
              </item>
             </layout>
            </widget>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="2" rowspan="2">
+         <widget class="QStackedWidget" name="GraphsPages">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>1</width>
+            <height>1</height>
+           </size>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="MplWidget" name="graph">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>550</width>
+             <height>550</height>
+            </size>
+           </property>
+          </widget>
+          <widget class="mplwidget2" name="graph2">
+           <property name="minimumSize">
+            <size>
+             <width>550</width>
+             <height>550</height>
+            </size>
+           </property>
           </widget>
          </widget>
         </item>

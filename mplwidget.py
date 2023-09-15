@@ -33,13 +33,14 @@ class MplWidget(QtWidgets.QWidget):
         self.N_k_plot, = self.canvas.ax.plot([], [], label="N_k")
         self.alpha, = self.canvas.ax.plot([], [], label="alpha")
         self.D, = self.canvas.ax.plot([], [], label="D")
-        self.R_12, = self.canvas.ax.plot([], [], label="R")
+        self.R_12, = self.canvas.ax.plot([], [], label="R₁₂")
         self.T, = self.canvas.ax.plot([], [], label="T")
         self.phase, = self.canvas.ax.plot([], [], label="phi")
         self.A, = self.canvas.ax.plot([], [], label="A")
-        self.eps_, = self.canvas.ax.plot([], [], label="eps''")
+        self.eps_, = self.canvas.ax.plot([], [], label="eps'")
         self.eps__, = self.canvas.ax.plot([], [], label="eps''")
         self.experimental, = self.canvas.ax.plot([], [], label="experiment")
+        self.R, = self.canvas.ax.plot([], [], label="R")
         for line in self.canvas.ax.get_lines():
             line.set_linewidth(3)
         self.canvas.ax.legend(loc='upper right', ncols=2, fontsize=12)
@@ -52,6 +53,7 @@ class MplWidget(QtWidgets.QWidget):
         self.eps_.set_visible(False)
         self.eps__.set_visible(False)
         self.experimental.set_visible(False)
+        self.R.set_visible(False)
         self.redraw_legends()  # show only visible legends
 
     def update_plots(self, data, data_changed=True, redraw_legend=False):
@@ -66,6 +68,7 @@ class MplWidget(QtWidgets.QWidget):
             self.A.set_data(data.w, data.A)
             self.eps_.set_data(data.w, data.epsilon_real)
             self.eps__.set_data(data.w, data.epsilon_im)
+            self.R.set_data(data.w, data.R)
             if (data.experiment_x is not None) and (data.experiment_y is not None):
                 self.experimental.set_data(data.experiment_x, data.experiment_y)
         if redraw_legend:

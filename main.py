@@ -64,6 +64,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ERealShowButton.stateChanged.connect(lambda state: self.graph.eps_.set_visible(state))
         self.EImgShowButton.stateChanged.connect(lambda state: self.graph.eps__.set_visible(state))
         self.ExpShowButton.stateChanged.connect(lambda state: self.graph.experimental.set_visible(state))
+        self.RButton.stateChanged.connect(lambda state: self.graph.R.set_visible(state))
+
         self.RTE_waveShowButton.stateChanged.connect(lambda state: self.graph2.RTE_wave.set_visible(state))  # second page
         self.RTM_waveButton.stateChanged.connect(lambda state: self.graph2.RTM_wave.set_visible(state))
         self.TE_phaseShowButton.stateChanged.connect(lambda state: self.graph2.TE_phase_12.set_visible(state))
@@ -94,13 +96,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.data.angle = value * np.pi / 180
         self.update_data()
 
-    def page1pushed(self):
+    def page1pushed(self):  # first page button
         self.ParametrsPages.setCurrentWidget(self.Page1)
         self.GraphsPages.setCurrentWidget(self.graph)
         self.Page1Button.setStyleSheet("QPushButton#Page1Button {background-color: rgb(170, 170, 255)}")
         self.Page2Button.setStyleSheet("QPushButton#Page2Button {background-color: rgb('FBFBFBFF')}")
 
-    def page2pushed(self):
+    def page2pushed(self):  # second page button
         self.ParametrsPages.setCurrentWidget(self.Page2)
         self.GraphsPages.setCurrentWidget(self.graph2)
         self.Page2Button.setStyleSheet("QPushButton#Page2Button {background-color: rgb(170, 170, 255)}")
@@ -213,7 +215,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #print("--- %s seconds ---" % (time.time() - start_time))
 
     def sync_defaults(self):
-        # sync base values
+        # sync base values in UI
         self.EpsilonLimitInput.setValue(self.data.membrane_epsilon_limit)
         self.N_media_n_input.setValue(np.real(self.data.N_media))
         self.N_media_k_input.setValue(np.imag(self.data.N_media))
