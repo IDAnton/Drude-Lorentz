@@ -20,6 +20,8 @@ class Data:
         self.D = np.zeros(self.discretization, dtype=np.double)
         self.alpha = np.zeros(self.discretization, dtype=np.double)
         self.A = np.zeros(self.discretization, dtype=np.double)
+        self.delta = np.zeros(self.discretization, dtype=np.double)
+        self.R = np.zeros(self.discretization, dtype=np.double)
         self.w_range = w_range
         self.w = np.linspace(self.w_range[0], self.w_range[1], self.discretization)
         self.r_12 = np.zeros(self.discretization, dtype=np.complex128)
@@ -37,6 +39,7 @@ class Data:
         self.tau_12 = np.zeros(self.discretization, dtype=np.complex128)
         self.tau_13 = np.zeros(self.discretization, dtype=np.complex128)
         self.tau = np.zeros(self.discretization, dtype=np.complex128)
+        self.r = np.zeros(self.discretization, dtype=np.complex128)
         N = 1  # ??
         #self.r_12 = (self.N_air - N) / (self.N_air + N)
         #self.r_23 = (N - self.N_media) / (N + self.N_media)
@@ -152,6 +155,7 @@ class Data:
         #delta = 2 * self.thickness * self.N_n
         #self.T = ((1 - self.R_12) * (1 - self.R_23) * np.exp(-self.alpha*self.thickness)) / (1 + self.R_12 * self.R_23 + 2 * np.sqrt(self.R_12 * self.R_23) * np.exp(-2 * self.alpha * self.thickness) * np.cos(delta * self.w))
 
+
     def phase(self):  # returns phase_12
         self.phi = np.arccos(np.real(self.r_12 / np.absolute(self.r_12)))
 
@@ -174,10 +178,16 @@ class Data:
         self.RNP = (self.RTE + self.RTM) / 2
 
     def transmission_of_the_film(self):  # returns transmission:
-        self.tau_12 = 2 * self.N_air / (self.N_air + self.N)
-        self.tau_13 = 2 * self.N_air / (self.N_media + self.N)
-        self.tau = (self.tau_12 * self.tau_13 * np.exp(-1 * self.alpha * self.thickness)) / (1 + self.r_12 * self.r_23 * np.exp(-2 * self.alpha * self.thickness) * np.cos(2 * np.pi * 2 * self.thickness * self.N_n * self.w))
+        #self.tau_12 = 2 * self.N_air / (self.N_air + self.N)
+        #self.tau_13 = 2 * self.N_air / (self.N_media + self.N)
+        self.delta = 2 * np.pi * 2 * self.thickness * self.N_n
+        # self.tau = (self.tau_12 * self.tau_13 * np.exp(-1 * self.alpha * self.thickness)) / (1 + self.r_12 * self.r_23 * np.exp(-2 * self.alpha * self.thickness) * np.cos(2 * np.pi * 2 * self.thickness * self.N_n * self.w))
+        self.tau = (np.sqrt(self.R_12 * self.R_23) * np.exp(-self.alpha * self.thickness) * np.exp(j * self.delta * self.discretization / 2)) / (1 + self.r_12 * self.r_23 * np.exp(-2 * self.alpha * self.thickness) * np.exp(j * self.delta * self.discretization))
         self.T = self.tau * np.conjugate(self.tau)
 
     def A_coef(self):  # optical density of the film with interference
         self.A = -np.log(self.T)
+
+    def R_coef(self):
+        self.r = (self.r_12 + self.r_23 * np.exp(-2 * self.alpha * self.thickness) * self.exp(j * self.delta * self.discretization)) / (1 + self.r_12 * self.r_23 * np.exp(-2 * self.alpha * self.thickness) * np.exp(j * self.delta * self.thickness))
+        self.R = self.r * np.conjugate(self.r)
