@@ -26,9 +26,9 @@ analysis of reflection from a semi-infinite medium);
 
 ## Download
 
-| Single  file | Archive |
-| - | - |
-|[![Download](https://img.shields.io/badge/Download-Drude--Lorentz.exe-red)]([https://github.com/IDAnton/Drude-Lorentz/releases/latest/download/Drude-lorentz.exe](https://github.com/IDAnton/Drude-Lorentz/releases/latest))|
+| Download |
+| - |
+|[![Download](https://img.shields.io/badge/Download-Drude--Lorentz.exe-red)](https://github.com/IDAnton/Drude-Lorentz/releases/latest)|
 
 ## Screenshots
 
